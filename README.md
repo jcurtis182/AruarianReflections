@@ -3,7 +3,7 @@ An ongoing series of personal websites designed to explore the limits of front e
 
 Heavily inspired by [Wired Sound for Wired People](https://fauux.neocities.org/), and [Terminal 00](https://angusnicneven.com/).
 
-*Note: Most, if not all sites will require Autoplay to be allowed on the browser used.*
+*Note: Most, if not all sites will require Autoplay to be allowed in the page settings of the browser used.*
 
 ## Current works:
 * [Let's All Love Miku](https://jcurtis182.github.io/AruarianReflections/Miku/index.html)
