@@ -1,0 +1,152 @@
+body {
+  background-color: black;
+}
+
+.miku {
+  position: absolute;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  z-index: 1;
+  transform: translate(-50%,-50%);
+  animation: hover 2s ease-in-out infinite;
+}
+@keyframes hover {
+  0% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-10px);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+}
+
+
+
+.cloud1 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 2148px;
+  height: 2148px;
+  margin-top: -1024px;
+  margin-left: -1024px;
+  animation: spinreverse 20s infinite linear;
+}
+@keyframes spinreverse {
+  0%  {-webkit-transform: rotate(-360deg);}
+  100% {-webkit-transform: rotate(0deg);}   
+}
+
+
+.cloud2 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 2148px;
+  height: 2148px;
+  margin-top: -1024px;
+  margin-left: -1024px;
+  z-index: -1;
+  animation: spinreverse 30s infinite linear;
+}
+@keyframes spinreverse {
+  0%  {-webkit-transform: rotate(-360deg);}
+  100% {-webkit-transform: rotate(0deg);}   
+}
+
+.cloud3 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 2048px;
+  height: 2048px;
+  margin-top: -1024px;
+  margin-left: -1024px;
+  z-index: -2;
+  animation: spinreverse 40s infinite linear;
+}
+@keyframes spinreverse {
+  0%  {-webkit-transform: rotate(-360deg);}
+  100% {-webkit-transform: rotate(0deg);}   
+}
+
+
+
+.cloud4 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 2048px;
+  height: 2048px;
+  margin-top: -1024px;
+  margin-left: -1024px;
+  z-index: -3;
+  animation: spinreverse 50s infinite linear;
+}
+@keyframes spinreverse {
+  0%  {-webkit-transform: rotate(-360deg);}
+  100% {-webkit-transform: rotate(0deg);}   
+}
+
+
+.cloud5 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 2048px;
+  height: 2048px;
+  margin-top: -1024px;
+  margin-left: -1024px;
+  z-index: -4;
+  animation: spinreverse 60s infinite linear;
+}
+@keyframes spinreverse {
+  0%  {-webkit-transform: rotate(-360deg);}
+  100% {-webkit-transform: rotate(0deg);}   
+}
+
+
+.cloud6 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 2048px;
+  height: 2048px;
+  margin-top: -1024px;
+  margin-left: -1024px;
+  z-index: -5;
+  animation: spinreverse 70s infinite linear;
+}
+@keyframes spinreverse {
+  0%  {-webkit-transform: rotate(-360deg);}
+  100% {-webkit-transform: rotate(0deg);}   
+}
+
+
+.cloud7 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 2048px;
+  height: 2048px;
+  margin-top: -1024px;
+  margin-left: -1024px;
+  z-index: -6;
+  animation: spinreverse 80s infinite linear;
+}
+@keyframes spinreverse {
+  0%  {-webkit-transform: rotate(-360deg);}
+  100% {-webkit-transform: rotate(0deg);}   
+}
+
+.icon {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 9999;
+}
