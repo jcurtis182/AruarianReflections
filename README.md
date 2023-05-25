@@ -8,5 +8,7 @@ Heavily inspired by Fauux's [Wired Sound for Wired People](https://fauux.neociti
 ## Current works:
 * [Let's All Love Miku](https://jcurtis182.github.io/AruarianReflections/Miku/index.html)
   * Designed to host selections from my playlist of English Hatsune Miku covers while also looking pretty cool.
+* [Take your Time](https://jcurtis182.github.io/AruarianReflections/P5Wallpaper/index.html)
+  * My attempt at recreating a now-deleted Persona 5 themed dynamic wallpaper as a standalone webpage. Current features: date and time, day/night cycle, ...
 
 *More coming soon...*
