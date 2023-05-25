@@ -25,7 +25,7 @@ body {
 }
 
 .cityBG {
-  background-image: url(assets/img/cityNightOff.jpg");
+  background-image: url("assets/img/cityNightOff.jpg");
   z-index: -1;
 }
 
@@ -141,7 +141,7 @@ body {
   height: auto;
   width: 50%;
   transition: all 1s;
-	transform-origin: 0% 50%;
+	transform-origin: 0% 35%;
 }
 
 .cloudBigBar{
@@ -149,12 +149,12 @@ body {
   width: 50%;
 }
 .cloudMedBar {
-  animation: orbit 45s linear infinite;
-  width: 60%;
+  animation: orbit 50s linear infinite;
+  width: 65%;
 }
 .cloudSmallBar {
-  animation: orbit 30s linear infinite;
-  width: 67%;
+  animation: orbit 45s linear infinite;
+  width: 70%;
 }
 
 .cloudBig, .cloudMed, .cloudSmall {

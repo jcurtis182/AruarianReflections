@@ -37,7 +37,7 @@ function updateDate() {
 
     checkDayNight();
 
-    setTimeout(updateDate, 1000)        //update every x millis
+    setTimeout(updateDate, 1000)        //update every second
 }
 
 function checkZero(i) {         // add zero in front of numbers < 10
@@ -58,4 +58,4 @@ function checkDayNight() {      //city day/night cycle
         clouds.style.display = "none";
         city.style.animation = "flashingCity 3s linear infinite";
     }
-} 
+}
