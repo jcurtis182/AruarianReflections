@@ -1,5 +1,5 @@
 # Aruarian Reflections
-An ongoing series of personal projects designed to explore front end development, mainly in regards to digital art and music presentation.
+An ongoing series of personal projects designed to explore front end development, mainly in regards to digital art and music presentation, or just emulating things I find cool online.
 
 Heavily inspired by Fauux's [Wired Sound for Wired People](https://fauux.neocities.org/) and Angus Nicneven's [Terminal 00](https://angusnicneven.com/).
 
