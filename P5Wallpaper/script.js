@@ -47,7 +47,7 @@ function checkZero(i) {         // add zero in front of numbers < 10
 
 function checkDayNight() {      //city day/night cycle
     if (hours >= 6 && hours <= 18){     //day = 6am->6pm
-         console.log("%cIsDay " + currentTime, "color:cyan");
+        // console.log("%cIsDay " + currentTime, "color:cyan");
         city.style.backgroundImage = "url(/assets/img/cityDay.jpg)";
         clouds.style.display = "inline";
         city.style.animation = "none";
