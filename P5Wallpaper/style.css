@@ -11,7 +11,7 @@ body {
 
 @font-face {
   font-family: "P5 Plaintext";
-  src: url(/assets/fonts/p5hatty.ttf);
+  src: url(assets/fonts/p5hatty.ttf);
 }
 
 /* City Backgrounds */
@@ -25,12 +25,12 @@ body {
 }
 
 .cityBG {
-  background-image: url("/assets/img/cityNightOff.jpg");
+  background-image: url(assets/img/cityNightOff.jpg");
   z-index: -1;
 }
 
 .city {
-  background-image: url(/assets/img/cityNightOn.jpg);
+  background-image: url(assets/img/cityNightOn.jpg);
   z-index: 0;
   opacity: 100%;
   animation: flashingCity 3s linear infinite;
