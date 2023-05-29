@@ -64,9 +64,8 @@ let lon, lat;
 let temperature = document.querySelector(".weather-temp");
 let loc = document.querySelector(".weather-location");
 let icon = document.querySelector(".weather-icon");
-const kelvin = 273;
 
-window.addEventListener("load", () => {
+window.addEventListener("load", () => {     //weather api call
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         console.log(position);
@@ -79,7 +78,7 @@ window.addEventListener("load", () => {
         // API URL
         const base =
   `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&` +
-  `lon=${lon}&appid=6d055e39ee237af35ca066f35474e9df`;
+  `lon=${lon}&units=imperial&appid=6d055e39ee237af35ca066f35474e9df`;
     
         // Calling the API
         fetch(base)
@@ -89,7 +88,7 @@ window.addEventListener("load", () => {
           .then((data) => {
             console.log(data);
             temperature.textContent = 
-                Math.floor(data.main.temp - kelvin) + "°C";
+                Math.floor(data.main.temp) + "°F";
             loc.textContent = data.name + ", " + data.sys.country;
             let icon1 = data.weather[0].icon;
             icon.innerHTML = 
