@@ -97,7 +97,7 @@ body {
   height: 100px;
   width: 250px;
   top: 5%;
-  left: 90%;
+  left: 91%;
   background-color: rgba(255, 255, 255, 0);
   z-index: 1;
   text-align: center;
@@ -108,10 +108,10 @@ body {
   position: absolute;
   width: 250px;
   top: 55%;
-  left: 28%;
+  left: 25%;
   transform: translate(-50%, -50%);
   font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 70px;
+  font-size: 75px;
   color: rgb(255, 255, 255);
   z-index: 3;
   text-shadow:
@@ -143,7 +143,6 @@ body {
   transition: all 1s;
 	transform-origin: 0% 35%;
 }
-
 .cloudBigBar{
   animation: orbit 60s linear infinite;
   width: 50%;
@@ -166,7 +165,6 @@ body {
   height: 100px;
   transform: rotate(90deg);
 }
-
 .cloudBig {
   height: 150px;
 }
@@ -186,5 +184,62 @@ body {
   }
   100% {
     transform: rotate(-240deg);
+  }
+}
+
+.weather-container {
+  position: absolute;
+  height: 25%;
+  width: 25%;
+  top: 90%;
+  left: 50%;
+  z-index: 5;
+  text-align: center;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.weather-icon {
+  position: absolute;
+  left: 73%;
+  transform: translateX(-50%) translateY(-50%);
+  animation: titter 2s steps(2) infinite;
+}
+.weather-temp {
+  font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 100px;
+  color: rgb(255, 255, 255);
+  text-shadow:
+    -3px -3px 0.5px #000,
+    0   -3px 0.5px #000,
+    3px -3px 0.5px #000,
+    3px  0   0.5px #000,
+    3px  3px 0.5px #000,
+    0    3px 0.5px #000,
+    -3px  3px 0.5px #000,
+    -3px  0   0.5px #000;
+  letter-spacing: 2px;
+}
+.weather-location {
+  font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 70px;
+  color: rgb(255, 255, 255);
+  text-shadow:
+    -3px -3px 0.5px #000,
+    0   -3px 0.5px #000,
+    3px -3px 0.5px #000,
+    3px  0   0.5px #000,
+    3px  3px 0.5px #000,
+    0    3px 0.5px #000,
+    -3px  3px 0.5px #000,
+    -3px  0   0.5px #000;
+  letter-spacing: 3px;
+}
+
+@keyframes titter {
+  0% {
+    transform: rotate(-20deg);
+  }
+  100%{
+    transform: rotate(20deg);
   }
 }
