@@ -14,5 +14,6 @@ Heavily inspired by Fauux's [Wired Sound for Wired People](https://fauux.neociti
   * Current features: 
     * date and time 
     * day/night cycle
+    * local weather display
 
 *More coming soon...*
