@@ -101,5 +101,5 @@ window.addEventListener("load", () => {     //weather api call
         });
     }
     console.log("Weather updated.")
-    setTimeout(updateWeather, 3600000)        //update every hour
+    setTimeout(updateWeather, 1800000)        //update every 30min
 }
