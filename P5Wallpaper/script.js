@@ -12,7 +12,7 @@ let clouds = document.querySelector(".clouds-container");
 let date = new Date();
 let day, month, year, hours, minutes, seconds, currentTime;
 
-updateDate();
+
 
 function updateDate() {
     let date = new Date();
@@ -36,7 +36,6 @@ function updateDate() {
     clockSec.innerHTML = seconds;
 
     checkDayNight();
-
     setTimeout(updateDate, 1000)        //update every second
 }
 
@@ -66,34 +65,41 @@ let loc = document.querySelector(".weather-location");
 let icon = document.querySelector(".weather-icon");
 
 window.addEventListener("load", () => {     //weather api call
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position);
-        lon = position.coords.longitude;
-        lat = position.coords.latitude;
-    
-        // API ID
-        const api = "6d055e39ee237af35ca066f35474e9df";
-    
-        // API URL
-        const base =
-  `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&` +
-  `lon=${lon}&units=imperial&appid=6d055e39ee237af35ca066f35474e9df`;
-    
-        // Calling the API
-        fetch(base)
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            console.log(data);
-            temperature.textContent = 
-                Math.floor(data.main.temp) + "°F";
-            loc.textContent = data.name + ", " + data.sys.country;
-            let icon1 = data.weather[0].icon;
-            icon.innerHTML = 
-                `<img src="assets/img/${icon1}.png" style= 'height:100px'/>`;
-          });
-      });
-    }
+    updateWeather();
+    updateDate();
   });
+
+  function updateWeather() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log(position);
+            lon = position.coords.longitude;
+            lat = position.coords.latitude;
+        
+            // API ID
+            const api = "6d055e39ee237af35ca066f35474e9df";
+        
+            // API URL
+            const base =
+    `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&` +
+    `lon=${lon}&units=imperial&appid=6d055e39ee237af35ca066f35474e9df`;
+        
+            // Calling the API
+            fetch(base)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+                temperature.textContent = 
+                    Math.floor(data.main.temp) + "°F";
+                loc.textContent = data.name + ", " + data.sys.country;
+                let icon1 = data.weather[0].icon;
+                icon.innerHTML = 
+                    `<img src="assets/img/${icon1}.png" style= 'height:100px'/>`; 
+            });
+        });
+    }
+    console.log("Weather updated.")
+    setTimeout(updateDate, 3600000)        //update every hour
+}
