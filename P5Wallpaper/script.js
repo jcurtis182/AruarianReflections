@@ -11,8 +11,15 @@ let clouds = document.querySelector(".clouds-container");
 
 let date = new Date();
 let day, month, year, hours, minutes, seconds, currentTime;
+let timeUnit = "standard";
 
 let weatherUpdateMin = 15;
+
+window.addEventListener("load", () => { 
+    updateWeather();
+    updateDate();
+});
+
 
 function updateDate() {
     let date = new Date();
@@ -31,7 +38,10 @@ function updateDate() {
     calMonth.innerHTML = month;
     calYear.innerHTML = year;
 
-    clockHr.innerHTML = hours;
+
+    if (timeUnit == "military") clockHr.innerHTML = hours;  //military time
+    else if (hours > 12) clockHr.innerHTML = hours - 12;    //standard time
+    
     clockMin.innerHTML = minutes;
     clockSec.innerHTML = seconds;
 
@@ -42,34 +52,16 @@ function updateDate() {
 function checkZero(i) {         // add zero in front of numbers < 10
     if (i < 10) {i = "0" + i};  
     return i;
-  }
-
-function checkDayNight() {      //city day/night cycle
-    if (hours >= 6 && hours <= 18){     //day = 6am->6pm
-        // console.log("%cIsDay " + currentTime, "color:cyan");
-        city.style.backgroundImage = "url(assets/img/cityDay.jpg)";
-        clouds.style.display = "inline";
-        city.style.animation = "none";
-    }
-    else {
-        // console.log("%cIsNight " + hours, "color:gold");
-        city.style.backgroundImage = "url(assets/img/cityNightOn.jpg)";
-        clouds.style.display = "none";
-        city.style.animation = "flashingCity 3s linear infinite";
-    }
 }
+
 
 let lon, lat;
 let temperature = document.querySelector(".weather-temp");
 let loc = document.querySelector(".weather-location");
 let icon = document.querySelector(".weather-icon");
+let tempUnit = "F";
 
-window.addEventListener("load", () => {     //weather api call
-    updateWeather();
-    updateDate();
-  });
-
-  function updateWeather() {
+function updateWeather() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
             console.log(position);
@@ -81,8 +73,7 @@ window.addEventListener("load", () => {     //weather api call
         
             // API URL
             const base =
-    `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&` +
-    `lon=${lon}&units=imperial&appid=${api}`;
+                `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${api}`;
         
             // Calling the API
             fetch(base)
@@ -91,15 +82,113 @@ window.addEventListener("load", () => {     //weather api call
             })
             .then((data) => {
                 console.log(data);
-                temperature.textContent = 
-                    Math.floor(data.main.temp) + "°F";
+                if (tempUnit == "F"){
+                    temperature.textContent = Math.floor(data.main.temp) + "°F";
+                }
+                else {
+                    temperature.textContent = Math.floor((data.main.temp - 32) / 1.8) + "°C";
+                }
                 loc.textContent = data.name + ", " + data.sys.country;
                 let icon1 = data.weather[0].icon;
                 icon.innerHTML = 
-                    `<img src="assets/img/${icon1}.png" style= 'height:100px'/>`; 
+                    `<img src="assets/img/weather_icons/${icon1}.png" style= 'height:100px'/>`; 
             });
         });
     }
     console.log("Weather updated.")
-    setTimeout(updateWeather, weatherUpdateMin*60000)        //update every x mins (converted mins to ms)
+    setTimeout(updateWeather, weatherUpdateMin*60000)        //update every 15min (min to ms)
 }
+
+
+let menu = document.querySelector(".menu-container");
+let menuButton = document.querySelector(".menu-button-outer");
+
+function toggleMenu(){
+    if (menu.style.display == "inline") {
+        console.log("Hiding menu.")
+        menu.style.display = "none";
+        menuButton.style.display = "inline";
+    }
+    else {
+        console.log("Showing menu.")
+        menu.style.display = "inline";
+        menuButton.style.display = "none";
+    }
+}
+
+let cloudButton = document.querySelector(".cloud-switch");
+function toggleClouds() {
+    if (clouds.style.opacity == "0") {
+        clouds.style.opacity = "100";
+        cloudButton.style.backgroundImage = "url(assets/img/phone_icons/cloud-icon-on.png)";
+        console.log("   Clouds shown.");
+    }
+    else {
+        clouds.style.opacity = "0";
+        cloudButton.style.backgroundImage = "url(assets/img/phone_icons/cloud-icon-off.png)";
+        console.log("   Clouds hidden.");
+    }
+}
+
+let cloudStatus = "";
+function checkDayNight() {      //city day/night cycle
+    if (hours >= 6 && hours <= 18){     //day = 6am->6pm
+        city.style.backgroundImage = "url(assets/img/cityDay.jpg)";
+        city.style.animation = "none";
+
+        clouds.style.display = "inline";
+        if (cloudButton.style.display = "url(assets/img/phone_icons/cloud-icon-night.png)") cloudButton.style.display = cloudStatus;    //restore previous status if page was loaded throughout the cycle
+        cloudButton.disabled = false;
+    }
+    else {
+        city.style.backgroundImage = "url(assets/img/cityNightOn.jpg)";
+        city.style.animation = "flashingCity 3s linear infinite";
+
+        clouds.style.display = "none";
+        cloudStatus = cloudButton.style.backgroundImage;        //store current status before disabling
+        cloudButton.style.backgroundImage = "url(assets/img/phone_icons/cloud-icon-night.png)";
+        cloudButton.disabled = true;
+    }
+}
+
+function switchTimeUnit() {
+    if (timeUnit == "military"){
+        console.log("Switching to standard time.");
+        timeUnit = "standard";
+    }
+    else {
+        console.log("Switching to military time.");
+        timeUnit = "military";
+    }
+}
+
+let tempButton = document.querySelector(".temp-switch"); 
+function switchTempUnit() {
+    if (tempUnit == "C"){
+        console.log("Switching to Fahrenheit.");
+        tempUnit = "F";
+    }
+    else {
+        console.log("Switching to Celcius.");
+        tempUnit = "C";
+    }
+    updateWeather();
+
+    tempButton.disabled = true;             // cooldown to limit api calls
+    tempButton.style.backgroundImage = "url(assets/img/phone_icons/temp-icon-cd.png)";
+    setTimeout(function(){
+        tempButton.disabled  = false;
+        tempButton.style.backgroundImage = "url(assets/img/phone_icons/temp-icon.png)";
+    }, 5000);
+}
+
+
+
+//STATUS                TODO                                                            EFFORT REQ
+// [-]      fix clock displaying 00 at 12pm on standard mode                            low 
+// [-]      lore accurate calendar display                                              high
+// [-]      music player                                                                high
+// [-]      make cloud path less round/more horizontal                                  med
+// [✓]      phone display to host options                                               high
+// [WIP]    toggle individual displays (clouds, clock, calendar, weather, etc.)         med
+// [-]      add rainfall/snow effects during relevent weather                           med
