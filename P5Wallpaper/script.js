@@ -12,7 +12,7 @@ let clouds = document.querySelector(".clouds-container");
 let date = new Date();
 let day, month, year, hours, minutes, seconds, currentTime;
 
-
+let weatherUpdateMin = 15;
 
 function updateDate() {
     let date = new Date();
@@ -101,5 +101,5 @@ window.addEventListener("load", () => {     //weather api call
         });
     }
     console.log("Weather updated.")
-    setTimeout(updateWeather, 1800000)        //update every 30min
+    setTimeout(updateWeather, weatherUpdateMin/60000)        //update every x mins (converted mins to ms)
 }
