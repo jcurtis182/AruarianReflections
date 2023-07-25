@@ -15,6 +15,6 @@ Heavily inspired by Fauux's [Wired Sound for Wired People](https://fauux.neociti
     * date and time 
     * day/night cycle
     * local weather display
-    * TBA
+    * settings menu with dynamic icons
 
 *More coming soon...*
