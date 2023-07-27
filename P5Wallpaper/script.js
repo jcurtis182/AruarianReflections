@@ -25,7 +25,7 @@ function updateDate() {
     let date = new Date();
 
     day = checkZero(date.getDate());
-    month = checkZero(date.getMonth() + 1);     //+1 because months start at 0
+    month = checkZero(date.getMonth() + 1);     //+1 bc months start at 0
     year = checkZero(date.getFullYear());
 
     hours = checkZero(date.getHours());
@@ -33,15 +33,13 @@ function updateDate() {
     seconds = checkZero(date.getSeconds());
     currentTime = hours + ":" + minutes + ":" + seconds;
 
-
     calDay.innerHTML = day;
     calMonth.innerHTML = month;
     calYear.innerHTML = year;
 
-
-    if (timeUnit == "military") clockHr.innerHTML = hours;  //military time
-    else if (hours > 12) clockHr.innerHTML = hours - 12;    //standard time
-    
+    if (timeUnit == "standard" && hours > 12) hours -= 12;    //standard time
+                                                              //military time by default
+    clockHr.innerHTML = hours;
     clockMin.innerHTML = minutes;
     clockSec.innerHTML = seconds;
 
@@ -91,12 +89,45 @@ function updateWeather() {
                 loc.textContent = data.name + ", " + data.sys.country;
                 let icon1 = data.weather[0].icon;
                 icon.innerHTML = 
-                    `<img src="assets/img/weather_icons/${icon1}.png" style= 'height:100px'/>`; 
+                    `<img src="assets/img/weather_icons/${icon1}.png" style= 'height:100px'/>`;
+                
+                weatherEffects("'" + icon1 + "'");
             });
         });
     }
     console.log("Weather updated.")
     setTimeout(updateWeather, weatherUpdateMin*60000)        //update every 15min (min to ms)
+}
+
+let effectsEnabled = true;
+let effects = document.querySelector(".weather-effects");
+function weatherEffects(weather) {
+    // weather = '09d';
+    console.log("Current weather code: " + weather);
+    if (effectsEnabled){
+        switch (weather) {
+            case '09d':
+            case '11d':
+                city.style.filter = 'saturate(40%)';         //darken sky if raining during day
+            case '09n':
+            case '10n':
+            case '11n':
+                effects.style.backgroundImage = "url(assets/img/rain.gif)";
+                effects.style.opacity = '70%';
+                effects.style.filter = 'blur(1px)';
+                console.log("It is raining.");
+                break;
+            case '13d':
+            case '13n':
+                effects.style.backgroundImage = "url(assets/img/snow.gif)";
+                effects.style.opacity = '100%';
+                effects.style.filter = 'blur(0px)';
+                console.log("It is snowing.");
+                break;
+            default:
+                effects.style.backgroundImage = "";
+        }
+    }
 }
 
 
@@ -185,10 +216,9 @@ function switchTempUnit() {
 
 
 //STATUS                TODO                                                            EFFORT REQ
-// [-]      fix clock displaying 00 at 12pm on standard mode                            low 
 // [-]      lore accurate calendar display                                              high
+// [-]      lore accurate weather display                                               high
 // [-]      music player                                                                high
-// [-]      make cloud path less round/more horizontal                                  med
-// [✓]      phone display to host options                                               high
+// [-]      make cloud path more horizontal                                             med
+
 // [WIP]    toggle individual displays (clouds, clock, calendar, weather, etc.)         med
-// [-]      add rainfall/snow effects during relevent weather                           med

@@ -249,6 +249,17 @@ body {
   letter-spacing: 3px;
 }
 
+.weather-effects {
+  position: absolute;
+  background-position: 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  filter: grayscale(1);
+  mix-blend-mode: screen;
+}
+
 @keyframes titter {
   0% {
     transform: rotate(-20deg);
