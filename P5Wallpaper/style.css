@@ -137,7 +137,7 @@ body {
   padding: 0%;
   z-index: 5;
   left: 50%;
-  top: 100%;
+  top: 150%;
   height: auto;
   width: 50%;
   transition: all 1s;
@@ -145,15 +145,15 @@ body {
 }
 .cloudBigBar{
   animation: orbit 200s linear infinite;
-  width: 50%;
+  width: 1824px;
 }
 .cloudMedBar {
   animation: orbitReverse 160s linear infinite;
-  width: 65%;
+  width: 1920px;
 }
 .cloudSmallBar {
-  animation: orbit 140s linear infinite;
-  width: 70%;
+  animation: orbit 150s linear infinite;
+  width: 1920px;
 }
 
 .cloudBig, .cloudMed, .cloudSmall {
@@ -177,25 +177,25 @@ body {
 
 @keyframes orbit {
   0% {
-    transform: rotate(15deg);
+    transform: rotate(-30deg);
   }
   50% {
-    transform: rotate(-105deg);
+    transform: rotate(-90deg);
   }
   100% {
-    transform: rotate(-240deg);
+    transform: rotate(-150deg);
   }
 }
 
 @keyframes orbitReverse {
   0% {
-    transform: rotate(-240deg);
+    transform: rotate(-150deg);
   }
   50% {
-    transform: rotate(-105deg);
+    transform: rotate(-90deg);
   }
   100% {
-    transform: rotate(15deg);
+    transform: rotate(-30deg);
   }
 }
 
@@ -282,7 +282,6 @@ body {
   border: 3px;
   border-color: #000;
 }
-
 
 .menu-button-inner {
   position: absolute;

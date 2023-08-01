@@ -28,22 +28,23 @@ function updateDate() {
     month = checkZero(date.getMonth() + 1);     //+1 bc months start at 0
     year = checkZero(date.getFullYear());
 
-    hours = checkZero(date.getHours());
-    minutes = checkZero(date.getMinutes());
-    seconds = checkZero(date.getSeconds());
+    hours = date.getHours();
+    minutes = date.getMinutes();
+    seconds = date.getSeconds();
     currentTime = hours + ":" + minutes + ":" + seconds;
 
     calDay.innerHTML = day;
     calMonth.innerHTML = month;
     calYear.innerHTML = year;
 
+    checkDayNight();                                          //find background day/night before time conversion
+
     if (timeUnit == "standard" && hours > 12) hours -= 12;    //standard time
                                                               //military time by default
-    clockHr.innerHTML = hours;
-    clockMin.innerHTML = minutes;
-    clockSec.innerHTML = seconds;
+    clockHr.innerHTML = checkZero(hours);
+    clockMin.innerHTML = checkZero(minutes);
+    clockSec.innerHTML = checkZero(seconds);
 
-    checkDayNight();
     setTimeout(updateDate, 1000)        //update every second
 }
 
@@ -163,7 +164,7 @@ function toggleClouds() {
 
 let cloudStatus = "";
 function checkDayNight() {      //city day/night cycle
-    if (hours >= 6 && hours <= 18){     //day = 6am->6pm
+    if (hours >= 6 && hours < 18){     //day = 6am->6pm
         city.style.backgroundImage = "url(assets/img/cityDay.jpg)";
         city.style.animation = "none";
 
@@ -219,6 +220,5 @@ function switchTempUnit() {
 // [-]      lore accurate calendar display                                              high
 // [-]      lore accurate weather display                                               high
 // [-]      music player                                                                high
-// [-]      make cloud path more horizontal                                             med
 
 // [WIP]    toggle individual displays (clouds, clock, calendar, weather, etc.)         med
