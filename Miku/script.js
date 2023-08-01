@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
         </p>`;
 
     document.body.appendChild(titleScreen);
-
     titleScreen.addEventListener("click", function() {
         titleScreen.className = "hide"
         console.log("hiding title");
@@ -25,5 +24,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
         playlist.innerHTML = `<iframe src="https://www.youtube.com/embed/videoseries?list=PL_adIwvX7O3VVjxKP5UuWFIfqvbBoLTtw&autoplay=1&loop=1&shuffle=1" allowfullscreen="" width="0" height="0" frameborder="0"></iframe>`;
     }) 
-    
 });

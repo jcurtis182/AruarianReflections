@@ -10,11 +10,9 @@ body {
 	bottom: 0;
 	background-color: #000;
 	z-index: 10005;
-
 	text-align: center;
 	transition: opacity 1s;
 }
-
 #autoplay-cover.hide {
 	opacity: 0;
 }
@@ -46,10 +44,6 @@ body {
   }
 }
 
-@keyframes spinreverse {
-  0%  {-webkit-transform: rotate(-360deg);}
-  100% {-webkit-transform: rotate(0deg);}   
-}
 
 .cloud1 {
   position: fixed;
@@ -61,8 +55,6 @@ body {
   margin-left: -1024px;
   animation: spinreverse 20s infinite linear;
 }
-
-
 
 .cloud2 {
   position: fixed;
@@ -76,7 +68,6 @@ body {
   animation: spinreverse 30s infinite linear;
 }
 
-
 .cloud3 {
   position: fixed;
   top: 50%;
@@ -88,9 +79,6 @@ body {
   z-index: -2;
   animation: spinreverse 40s infinite linear;
 }
-
-
-
 
 .cloud4 {
   position: fixed;
@@ -104,8 +92,6 @@ body {
   animation: spinreverse 50s infinite linear;
 }
 
-
-
 .cloud5 {
   position: fixed;
   top: 50%;
@@ -117,8 +103,6 @@ body {
   z-index: -4;
   animation: spinreverse 60s infinite linear;
 }
-
-
 
 .cloud6 {
   position: fixed;
@@ -132,8 +116,6 @@ body {
   animation: spinreverse 70s infinite linear;
 }
 
-
-
 .cloud7 {
   position: fixed;
   top: 50%;
@@ -145,7 +127,10 @@ body {
   z-index: -6;
   animation: spinreverse 80s infinite linear;
 }
-
+@keyframes spinreverse {
+  0%  {-webkit-transform: rotate(-360deg);}
+  100% {-webkit-transform: rotate(0deg);}   
+}
 
 .icon {
   position: fixed;
