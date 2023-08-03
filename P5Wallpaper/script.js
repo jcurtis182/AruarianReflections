@@ -7,6 +7,7 @@ let clockMin = document.getElementById("minutes");
 let clockSec = document.getElementById("seconds");
 
 let city = document.querySelector(".city");
+let cityBG = document.querySelector(".cityBG");
 let clouds = document.querySelector(".clouds-container");
 
 let date = new Date();
@@ -173,6 +174,7 @@ function checkDayNight() {      //city day/night cycle
         cloudButton.disabled = false;
     }
     else {
+        cityBG.style.backgroundImage = "url(assets/img/cityNightOff.jpg)";
         city.style.backgroundImage = "url(assets/img/cityNightOn.jpg)";
         city.style.animation = "flashingCity 3s linear infinite";
 
