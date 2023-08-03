@@ -220,6 +220,30 @@ function switchTempUnit() {
 
 let song_list = [
     {
+        name: "Phantom",
+        source: "Persona 5",
+        artist: "Persona 5 OST",
+        path: "assets/audio/Persona_5-Phantom.mp3"
+    },
+    {
+        name: "Beneath the Mask (Rain)",
+        source: "Persona 5",
+        artist: "Lyn",
+        path: "assets/audio/Persona_5-Beneath_the_Mask_(Rain).mp3"
+    },
+    {
+        name: "Layer Cake",
+        source: "Persona 5",
+        artist: "Persona 5 OST",
+        path: "assets/audio/Persona_5-Layer_Cake.mp3"
+    },
+    {
+        name: "I Believe",
+        source: "Persona 5 Royal",
+        artist: "Lyn",
+        path: "assets/audio/Persona_5_Royal-I_Believe.mp3"
+    },
+    {
         name: "No More What Ifs",
         source: "Persona 5 Royal",
         artist: "Lyn",
@@ -232,11 +256,29 @@ let song_list = [
         path: "assets/audio/Persona_4-Heartbeat_Heartbreak.mp3"
     },
     {
+        name: "Signs of Love",
+        source: "Persona 4",
+        artist: "Shihoko Hirata",
+        path: "assets/audio/Persona_4-Signs_of_Love.mp3"
+    },
+    {
+        name: "Heaven",
+        source: "Persona 4",
+        artist: "Shihoko Hirata",
+        path: "assets/audio/Persona_4-Heaven.mp3"
+    },
+    {
         name: "Memories of You",
         source: "Persona 3",
         artist: "Yumi Kawamura",
         path: "assets/audio/Persona_3-Kimi_no_Kioku_Memories_of_You.mp3"
     },
+    {
+        name: "A Lone Prayer",
+        source: "Persona 1 (PSP)",
+        artist: "Yumi Kawamura",
+        path: "assets/audio/Persona_1-A_Lone_Prayer.mp3"
+    }
 ];
 
 let song_source = document.querySelector(".song-source");
