@@ -224,7 +224,7 @@ let song_list = [
     {
         name: "Phantom",
         source: "Persona 5",
-        artist: "Persona 5 OST",
+        artist: "アトラスサウンドチーム",
         path: "assets/audio/Persona_5-Phantom.mp3"
     },
     {
@@ -236,7 +236,7 @@ let song_list = [
     {
         name: "Layer Cake",
         source: "Persona 5",
-        artist: "Persona 5 OST",
+        artist: "アトラスサウンドチーム",
         path: "assets/audio/Persona_5-Layer_Cake.mp3"
     },
     {
