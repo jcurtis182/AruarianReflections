@@ -10,7 +10,7 @@ let city = document.querySelector(".city");
 let clouds = document.querySelector(".clouds-container");
 
 let date = new Date();
-let day, month, year, hours, minutes, seconds, currentTime;
+let day, month, year, hours, minutes, seconds, currentClockTime;
 let timeUnit = "standard";
 
 let weatherUpdateMin = 15;
@@ -31,7 +31,7 @@ function updateDate() {
     hours = date.getHours();
     minutes = date.getMinutes();
     seconds = date.getSeconds();
-    currentTime = hours + ":" + minutes + ":" + seconds;
+    currentClockTime = hours + ":" + minutes + ":" + seconds;
 
     calDay.innerHTML = day;
     calMonth.innerHTML = month;
@@ -245,7 +245,7 @@ let prev_btn = document.querySelector(".prev-song");
  
 let seek_slider = document.querySelector(".seek-slider");
 let volume_slider = document.querySelector(".volume-slider");
-let song_current_time = document.querySelector(".current-time");
+let curr_time = document.querySelector(".current-time");
 let song_duration = document.querySelector(".duration");
 let seekPos = 0;
  
@@ -274,7 +274,7 @@ function loadSong(song_index) {
 }
 
 function resetValues() {
-    song_current_time.textContent = "00:00";
+    curr_time.textContent = "00:00";
     song_duration.textContent = "00:00";
     seek_slider.value = 0;
 }
@@ -317,7 +317,7 @@ function prevSong() {
 function seekTo() {
     //find current position by calc percentage of song 
     seekPos = current_song.duration * (seek_slider.value / 100);
-    current_song.song_time = seekPos;
+    current_song.currentTime = seekPos;
 }
 
 function setVolume() {
@@ -330,12 +330,12 @@ function seekUpdate() {
     //check if duration is valid
     if (!isNaN(current_song.duration) && isPlaying == true) {
 
-        seekPosition = current_song.song_time * (100 / current_song.duration);
+        seekPosition = current_song.currentTime * (100 / current_song.duration);
         seek_slider.value = seekPosition;
 
         //calc time left and total duration
-        let currentMin = Math.floor(current_song.song_current_time / 60);
-        let currentSec = Math.floor(current_song.song_current_time - currentMin * 60);
+        let currentMin = Math.floor(current_song.currentTime / 60);
+        let currentSec = Math.floor(current_song.currentTime - currentMin * 60);
         let durationMin = Math.floor(current_song.duration / 60);
         let durationSec = Math.floor(current_song.duration - durationMin * 60);
 
@@ -347,11 +347,9 @@ function seekUpdate() {
         if (currentMin < 10) currentMin = "0" + currentMin; 
         if (durationMin < 10) durationMin = "0" + durationMin; 
 
-        console.log("       " + currentMin + ":" + currentSec + "   " + durationMin + ":" + durationSec);
-
         //display updated duration
-        song_current_time.textContent = currentMin + ":" + currentSec;
-        song_duration.textContent = durationMin + ":" + currentSec;
+        curr_time.textContent = currentMin + ":" + currentSec;
+        song_duration.textContent = durationMin + ":" + durationSec;
     }
 }
 
