@@ -339,8 +339,6 @@ function seekUpdate() {
         let durationMin = Math.floor(current_song.duration / 60);
         let durationSec = Math.floor(current_song.duration - durationMin * 60);
 
-        console.log(currentMin + ":" + currentSec + "   " + durationMin + ":" + durationSec);
-
         //add zero to single digit time values
         if (currentSec < 10) currentSec = "0" + currentSec; 
         if (durationSec < 10) durationSec = "0" + durationSec; 
