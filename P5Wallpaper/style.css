@@ -276,7 +276,8 @@ body {
   background-color: red;
   display: none;
   border: 3px;
-  border-color: #000;
+  border-radius: 20px;
+  outline: #0c0c0c solid 5px;
 }
 
 .menu-button-inner {
@@ -347,7 +348,7 @@ body {
 
 .time-switch {
   left: 25%;
-  background-image: url(assets/img/phone_icons/time-icon.png);
+  background-image: url(assets/img/phone_icons/time-icon-standard.png);
 }
 
 .temp-switch {

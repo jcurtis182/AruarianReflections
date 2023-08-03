@@ -183,14 +183,17 @@ function checkDayNight() {      //city day/night cycle
     }
 }
 
+let timeButton = document.querySelector(".time-switch");
 function switchTimeUnit() {
     if (timeUnit == "military"){
         console.log("Switching to standard time.");
         timeUnit = "standard";
+        timeButton.style.backgroundImage = "url(assets/img/phone_icons/time-icon-standard.png)";
     }
     else {
         console.log("Switching to military time.");
         timeUnit = "military";
+        timeButton.style.backgroundImage = "url(assets/img/phone_icons/time-icon-military.png)";
     }
 }
 
@@ -204,14 +207,15 @@ function switchTempUnit() {
         console.log("Switching to Celcius.");
         tempUnit = "C";
     }
-    updateWeather();
 
-    tempButton.disabled = true;             // cooldown to limit api calls
+    tempButton.disabled = true;             //cooldown to limit api calls
     tempButton.style.backgroundImage = "url(assets/img/phone_icons/temp-icon-cd.png)";
     setTimeout(function(){
         tempButton.disabled  = false;
         tempButton.style.backgroundImage = "url(assets/img/phone_icons/temp-icon.png)";
+        updateWeather();                    //temp unit switch feels better after cooldown rather than during
     }, 5000);
+    
 }
 
 let song_list = [
@@ -354,17 +358,17 @@ function seekUpdate() {
 loadSong(song_index);
 setVolume();
 
-
-//https://www.geeksforgeeks.org/create-a-music-player-using-javascript/#
-
 //STATUS                TODO                                                            EFFORT REQ
 // [-]      lore accurate calendar display                                              high
+//              array for month num to name
+//              weekdays likely individual images, so array as well
+//              make base horizontal then transform
+//              knife image
+//              clock changes little
+//              year changes little
 // [-]      lore accurate weather display                                               high
 // [-]      customize app icons to show status                                          med
 // [-]      music player                                                                high
-// [-]          make icons (prev, skip, pause, play, vol up/down)                       med
-// [-]          add music                                                               low
-// [-]          custom playlists                                                        ultra
 // [-]
 
 // [~]    toggle individual displays (clouds, clock, calendar, weather, etc.)         med
