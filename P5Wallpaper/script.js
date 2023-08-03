@@ -10,7 +10,7 @@ let city = document.querySelector(".city");
 let clouds = document.querySelector(".clouds-container");
 
 let date = new Date();
-let day, month, year, hours, minutes, seconds, currentTime;
+let day, month, year, hours, minutes, seconds, currentClockTime;
 let timeUnit = "standard";
 
 let weatherUpdateMin = 15;
@@ -31,7 +31,7 @@ function updateDate() {
     hours = date.getHours();
     minutes = date.getMinutes();
     seconds = date.getSeconds();
-    currentTime = hours + ":" + minutes + ":" + seconds;
+    currentClockTime = hours + ":" + minutes + ":" + seconds;
 
     calDay.innerHTML = day;
     calMonth.innerHTML = month;
@@ -214,11 +214,157 @@ function switchTempUnit() {
     }, 5000);
 }
 
+let song_list = [
+    {
+        name: "No More What Ifs",
+        source: "Persona 5 Royal",
+        artist: "Lyn",
+        path: "assets/audio/Persona_5_Royal-No_More_What_Ifs.mp3"
+    },
+    {
+        name: "Heartbeat, Heartbreak",
+        source: "Persona 4",
+        artist: "Shihoko Hirata",
+        path: "assets/audio/Persona_4-Heartbeat_Heartbreak.mp3"
+    },
+    {
+        name: "Memories of You",
+        source: "Persona 3",
+        artist: "Yumi Kawamura",
+        path: "assets/audio/Persona_3-Kimi_no_Kioku_Memories_of_You.mp3"
+    },
+];
 
+let song_source = document.querySelector(".song-source");
+let song_name = document.querySelector(".song-name");
+let song_artist = document.querySelector(".song-artist");
+ 
+let playpause_btn = document.querySelector(".playpause-song");
+let skip_btn = document.querySelector(".skip-song");
+let prev_btn = document.querySelector(".prev-song");
+ 
+let seek_slider = document.querySelector(".seek-slider");
+let volume_slider = document.querySelector(".volume-slider");
+let curr_time = document.querySelector(".current-time");
+let song_duration = document.querySelector(".duration");
+let seekPos = 0;
+ 
+let song_index = 0;
+let isPlaying = false;
+let updateTimer;
+
+let current_song = document.createElement('audio');
+
+function loadSong(song_index) {
+    clearInterval(updateTimer);
+    resetValues();
+
+    current_song.src = song_list[song_index].path;
+    current_song.load();
+
+    song_name.textContent = song_list[song_index].name;
+    song_artist.textContent = song_list[song_index].artist;
+    song_source.textContent = song_list[song_index].source;
+
+    //Update progression slider every 1000ms
+    updateTimer = setInterval(seekUpdate, 1000);
+
+    //When current song ends, play next song
+    current_song.addEventListener("ended", skipSong);
+}
+
+function resetValues() {
+    curr_time.textContent = "00:00";
+    song_duration.textContent = "00:00";
+    seek_slider.value = 0;
+}
+
+function playPause() {
+    if (!isPlaying) playSong();
+    else pauseSong();
+}
+
+function playSong() {
+    current_song.play();
+    isPlaying = true;
+    playpause_btn.innerHTML = '<i class="fa fa-pause-circle fa-5x"></i>';
+}
+
+function pauseSong() {
+    current_song.pause();
+    isPlaying = false;
+    playpause_btn.innerHTML = '<i class="fa fa-play-circle fa-5x"></i>';
+}
+
+function skipSong() {
+    //move ahead in song list; start over if at end of list
+    if (song_index < song_list.length - 1) song_index += 1;
+    else song_index = 0;
+
+    loadSong(song_index);
+    playSong();
+}
+
+function prevSong() {
+    //move backwards in song list; jump to end if at beginning of list
+    if (song_index > 0) song_index -= 1;
+    else song_index = song_list.length - 1;
+
+    loadSong(song_index);
+    playSong();
+}
+
+function seekTo() {
+    //find current position by calc percentage of song 
+    seekPos = current_song.duration * (seek_slider.value / 100);
+    current_song.currentTime = seekPos;
+}
+
+function setVolume() {
+    current_song.volume = volume_slider.value / 100;
+}
+
+function seekUpdate() {
+    let seekPosition = 0;
+
+    //check if duration is valid
+    if (!isNaN(current_song.duration) && isPlaying == true) {
+
+        seekPosition = current_song.currentTime * (100 / current_song.duration);
+        seek_slider.value = seekPosition;
+
+        //calc time left and total duration
+        let currentMin = Math.floor(current_song.currentTime / 60);
+        let currentSec = Math.floor(current_song.currentTime - currentMin * 60);
+        let durationMin = Math.floor(current_song.duration / 60);
+        let durationSec = Math.floor(current_song.duration - durationMin * 60);
+
+        //add zero to single digit time values
+        if (currentSec < 10) currentSec = "0" + currentSec; 
+        if (durationSec < 10) durationSec = "0" + durationSec; 
+        if (currentMin < 10) currentMin = "0" + currentMin; 
+        if (durationMin < 10) durationMin = "0" + durationMin; 
+
+        //display updated duration
+        curr_time.textContent = currentMin + ":" + currentSec;
+        song_duration.textContent = durationMin + ":" + durationSec;
+    }
+}
+
+loadSong(song_index);
+setVolume();
+
+
+//https://www.geeksforgeeks.org/create-a-music-player-using-javascript/#
 
 //STATUS                TODO                                                            EFFORT REQ
 // [-]      lore accurate calendar display                                              high
 // [-]      lore accurate weather display                                               high
+// [-]      customize app icons to show status                                          med
 // [-]      music player                                                                high
+// [-]          make icons (prev, skip, pause, play, vol up/down)                       med
+// [-]          add music                                                               low
+// [-]          custom playlists                                                        ultra
+// [-]
 
-// [WIP]    toggle individual displays (clouds, clock, calendar, weather, etc.)         med
+// [~]    toggle individual displays (clouds, clock, calendar, weather, etc.)         med
