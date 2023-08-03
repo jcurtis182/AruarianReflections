@@ -20,7 +20,7 @@ body {
 }
 
 .cityBG {
-  background-image: url("assets/img/cityNightOff.jpg");
+  background-image: url("assets/img/cityDay.jpg");
   z-index: -1;
 }
 

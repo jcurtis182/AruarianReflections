@@ -210,7 +210,7 @@ function switchTempUnit() {
 
     tempButton.disabled = true;             //cooldown to limit api calls
     tempButton.style.backgroundImage = "url(assets/img/phone_icons/temp-icon-cd.png)";
-    setTimeout(function(){
+    setTimeout(function() {
         tempButton.disabled  = false;
         tempButton.style.backgroundImage = "url(assets/img/phone_icons/temp-icon.png)";
         updateWeather();                    //temp unit switch feels better after cooldown rather than during
@@ -368,7 +368,6 @@ setVolume();
 //              year changes little
 // [-]      lore accurate weather display                                               high
 // [-]      customize app icons to show status                                          med
-// [-]      music player                                                                high
 // [-]
 
 // [~]    toggle individual displays (clouds, clock, calendar, weather, etc.)         med
