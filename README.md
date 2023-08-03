@@ -17,5 +17,6 @@ Heavily inspired by Fauux's [Wired Sound for Wired People](https://fauux.neociti
     * day/night cycle
     * local weather display
     * settings menu with dynamic icons
+    * music player 
 
 *More coming soon...*
