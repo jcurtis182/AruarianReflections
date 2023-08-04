@@ -466,6 +466,6 @@ setVolume();
 //              weekdays likely individual images, so array as well
 //              knife image
 // [-]      lore accurate weather display                                               high
-// [-]      customize app icons to show status                                          med
+// [-]      separate settings and music player into separate menues                     med
 
 // [~]    toggle individual displays (clouds, clock, calendar, weather, etc.)           med

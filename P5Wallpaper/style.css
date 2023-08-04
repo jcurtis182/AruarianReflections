@@ -268,16 +268,27 @@ body {
 /* Phone Menu */
 .menu-container {
   position: absolute;
-  z-index: 98;
-  right: 0;
+  z-index: 95;
+  right: 20px;
   bottom: 0;
   height: 500px;
   width: 350px;
-  background-color: red;
+  background-color: black;
   display: none;
-  border: 3px;
-  border-radius: 20px;
-  outline: #0c0c0c solid 5px;
+  border-top: 3px;
+  /* border-radius: 20px; */
+  outline: #ffffff solid 5px;
+}
+
+.menu-background {
+  position: absolute;
+  z-index: 96;
+  right: 7px;
+  bottom: 0px;
+  height: 493px;
+  width: 335px;
+  background-color: red;
+  transform: rotate(0.75deg);
 }
 
 .menu-button-inner {
@@ -290,7 +301,7 @@ body {
   display: inline;
   border-radius: 12px;
   box-shadow: none;
-  
+  z-index: 97;
   background-image: url(assets/img/phone_icons/nav-icon.png);
   background-size: 100%;
 }
@@ -301,14 +312,14 @@ body {
   width: 60px;
   background-color: transparent;
   bottom: 15px;
-  right: 15px;
+  right: 35px;
   display: inline;
   border: none;
   z-index: 99;
   
   background-image: url(assets/img/phone_icons/nav-icon.png);
   background-size: 100%;
-  animation: wave 10s linear infinite;
+  animation: wave 8s linear infinite;
 }
 
 @keyframes wave {
@@ -339,6 +350,7 @@ body {
   border-color: black;
   background-size: 100%;
   background-position: center;
+  z-index: 97;
 }
 
 .cloud-switch {
@@ -358,14 +370,15 @@ body {
 }
 
 .music-player {
-  right: 10px;
-  bottom: 35px;
-  height: 60vh;
+  position: relative;
+  right: 0px;
+  bottom: -45%;
+  height: 80px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  z-index: 99;
+  z-index: 98;
 }
 
 .music-details {
@@ -400,6 +413,7 @@ body {
 
 .shuffle-songs, .repeat-song {
   padding: 0.75rem;
+  padding-top: 1.1rem;
 }
 
 .playpause-song:hover, .prev-song:hover, .skip-song:hover,
@@ -408,7 +422,7 @@ body {
 }
 
 .music-slider {
-  width: 100%;
+  width: 95%;
   max-width: 400px;
   display: flex;
   justify-content: center;
