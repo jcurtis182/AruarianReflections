@@ -64,7 +64,6 @@ let tempUnit = "F";
 function updateWeather() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
-            console.log(position);
             lon = position.coords.longitude;
             lat = position.coords.latitude;
         
@@ -81,7 +80,6 @@ function updateWeather() {
                 return response.json();
             })
             .then((data) => {
-                console.log(data);
                 if (tempUnit == "F"){
                     temperature.textContent = Math.floor(data.main.temp) + "°F";
                 }
@@ -97,15 +95,13 @@ function updateWeather() {
             });
         });
     }
-    console.log("Weather updated.")
+    console.log("Weather updated");
     setTimeout(updateWeather, weatherUpdateMin*60000)        //update every 15min (min to ms)
 }
 
 let effectsEnabled = true;
 let effects = document.querySelector(".weather-effects");
 function weatherEffects(weather) {
-    // weather = '09d';
-    console.log("Current weather code: " + weather);
     if (effectsEnabled){
         switch (weather) {
             case '09d':
@@ -220,68 +216,81 @@ function switchTempUnit() {
     
 }
 
-let song_list = [
+const song_list_ordered = [
     {
         name: "Phantom",
         source: "Persona 5",
         artist: "アトラスサウンドチーム",
+        order: 1,
         path: "assets/audio/Persona_5-Phantom.mp3"
     },
     {
         name: "Beneath the Mask (Rain)",
         source: "Persona 5",
         artist: "Lyn",
+        order: 2,
         path: "assets/audio/Persona_5-Beneath_the_Mask_(Rain).mp3"
     },
     {
         name: "Layer Cake",
         source: "Persona 5",
         artist: "アトラスサウンドチーム",
+        order: 3,
         path: "assets/audio/Persona_5-Layer_Cake.mp3"
     },
     {
         name: "I Believe",
         source: "Persona 5 Royal",
         artist: "Lyn",
+        order: 4,
         path: "assets/audio/Persona_5_Royal-I_Believe.mp3"
     },
     {
         name: "No More What Ifs",
         source: "Persona 5 Royal",
         artist: "Lyn",
+        order: 5,
         path: "assets/audio/Persona_5_Royal-No_More_What_Ifs.mp3"
     },
     {
         name: "Heartbeat, Heartbreak",
         source: "Persona 4",
         artist: "Shihoko Hirata",
+        order: 6,
         path: "assets/audio/Persona_4-Heartbeat_Heartbreak.mp3"
     },
     {
         name: "Signs of Love",
         source: "Persona 4",
         artist: "Shihoko Hirata",
+        order: 7,
         path: "assets/audio/Persona_4-Signs_of_Love.mp3"
     },
     {
         name: "Heaven",
         source: "Persona 4",
         artist: "Shihoko Hirata",
+        order: 8,
         path: "assets/audio/Persona_4-Heaven.mp3"
     },
     {
         name: "Memories of You",
         source: "Persona 3",
         artist: "Yumi Kawamura",
+        order: 9,
         path: "assets/audio/Persona_3-Kimi_no_Kioku_Memories_of_You.mp3"
     },
     {
         name: "A Lone Prayer",
         source: "Persona 1 (PSP)",
         artist: "Yumi Kawamura",
+        order: 10,
         path: "assets/audio/Persona_1-A_Lone_Prayer.mp3"
     }
 ];
+
+//create object copy for us to modify without changing original order
+let song_list = JSON.parse(JSON.stringify(song_list_ordered));
 
 let song_source = document.querySelector(".song-source");
 let song_name = document.querySelector(".song-name");
@@ -344,17 +353,12 @@ function pauseSong() {
     playpause_btn.innerHTML = '<i class="fa fa-play-circle fa-5x"></i>';
 }
 
+let previous_song = "";
 function skipSong() {
-    let previous_song = song_index;
-    if (!shuffleStatus && !repeatStatus) {
-        if (song_index < song_list.length - 1) song_index += 1;
+    if (!repeatStatus) {
+        if (song_index < song_list.length - 1) song_index++;
         else song_index = 0;
     }
-    else if (shuffleStatus) {
-        song_index = Math.floor(Math.random() * song_list.length);
-        if (song_index == previous_song) skipSong();
-    }
-    console.log("Song " + song_index);
     loadSong(song_index);
     playSong();
 }
@@ -376,8 +380,18 @@ function shuffleSongs() {
         shuffleButton.style.color = "white";
         repeatStatus = false;
         repeatButton.style.color = "black";
+
+        shuffleList(song_list);
+        console.log("Song list shuffled.");
+        console.log("Song index is now: " + song_index);
     }
-    else shuffleButton.style.color = "black";
+    else { 
+        shuffleButton.style.color = "black";
+        //revert back to original song order
+        song_index = song_list[song_index].order - 1;
+        song_list = JSON.parse(JSON.stringify(song_list_ordered));;
+        console.log("Song index changed to " + song_index);
+    }
 }
 
 let repeatButton = document.querySelector(".repeat-song");
@@ -429,6 +443,20 @@ function seekUpdate() {
     }
 }
 
+function shuffleList(list) {
+    var i = list.length,
+        j = 0,
+        temp;
+    while (i--) {
+        j = Math.floor(Math.random() * (i+1));
+        // swap randomly chosen element with current element
+        temp = list[i];
+        list[i] = list[j];
+        list[j] = temp;
+    }
+    return list;
+}
+
 loadSong(song_index);
 setVolume();
 
@@ -439,6 +467,5 @@ setVolume();
 //              knife image
 // [-]      lore accurate weather display                                               high
 // [-]      customize app icons to show status                                          med
-// [-]      make shuffle button not repeat until all songs played                       surprisingly high
 
 // [~]    toggle individual displays (clouds, clock, calendar, weather, etc.)           med
