@@ -345,10 +345,16 @@ function pauseSong() {
 }
 
 function skipSong() {
-    //move ahead in song list; start over if at end of list
-    if (song_index < song_list.length - 1) song_index += 1;
-    else song_index = 0;
-
+    let previous_song = song_index;
+    if (!shuffleStatus && !repeatStatus) {
+        if (song_index < song_list.length - 1) song_index += 1;
+        else song_index = 0;
+    }
+    else if (shuffleStatus) {
+        song_index = Math.floor(Math.random() * song_list.length);
+        if (song_index == previous_song) skipSong();
+    }
+    console.log("Song " + song_index);
     loadSong(song_index);
     playSong();
 }
@@ -360,6 +366,30 @@ function prevSong() {
 
     loadSong(song_index);
     playSong();
+}
+
+let shuffleButton = document.querySelector(".shuffle-songs");
+let shuffleStatus = false;
+function shuffleSongs() {
+    shuffleStatus = !shuffleStatus;
+    if (shuffleStatus) {
+        shuffleButton.style.color = "white";
+        repeatStatus = false;
+        repeatButton.style.color = "black";
+    }
+    else shuffleButton.style.color = "black";
+}
+
+let repeatButton = document.querySelector(".repeat-song");
+let repeatStatus = false;
+function repeatSong() {
+    repeatStatus = !repeatStatus;
+    if (repeatStatus) {
+        repeatButton.style.color = "white";
+        shuffleStatus = false;
+        shuffleButton.style.color = "black";
+    }
+    else repeatButton.style.color = "black";
 }
 
 function seekTo() {
@@ -406,12 +436,9 @@ setVolume();
 // [-]      lore accurate calendar display                                              high
 //              array for month num to name
 //              weekdays likely individual images, so array as well
-//              make base horizontal then transform
 //              knife image
-//              clock changes little
-//              year changes little
 // [-]      lore accurate weather display                                               high
 // [-]      customize app icons to show status                                          med
-// [-]
+// [-]      make shuffle button not repeat until all songs played                       surprisingly high
 
-// [~]    toggle individual displays (clouds, clock, calendar, weather, etc.)         med
+// [~]    toggle individual displays (clouds, clock, calendar, weather, etc.)           med
