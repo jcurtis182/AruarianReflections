@@ -47,7 +47,7 @@ body {
   background-color: rgba(255, 255, 255, 0);
   z-index: 1;
   text-align: center;
-  rotate: -25deg;
+  transform: rotate(-25deg);
 }
 
 .calendar-date, .calendar-year {
@@ -96,7 +96,7 @@ body {
   background-color: rgba(255, 255, 255, 0);
   z-index: 1;
   text-align: center;
-  rotate: 25deg;
+  transform: rotate(25deg);
 }
 
 .clock-time {
@@ -210,7 +210,7 @@ body {
  /* Weather Display */
 .weather-icon {
   position: absolute;
-  left: 73%;
+  left: 75%;
   transform: translateX(-50%) translateY(-50%);
   animation: titter 2s steps(2) infinite;
 }
