@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 
 <html>
@@ -50,4 +51,106 @@
         <button type="button" class="menu-button-outer" onclick="toggleMenu()"></button>
         <script src="script.js" async defer></script>
     </body>
+=======
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Take your time.</title>
+        <meta name="description" content="">
+        <link rel="icon" href="assets/img/icon.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        <link rel="stylesheet"
+            href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="cityBG"></div>
+        <div class="city"></div>
+        <div class="weather-effects"></div>
+
+        <div class="calendar-container">
+            <div class="calendar-date">
+                <span id="month">00</span>/<span id="day">00</span>
+            </div>
+            <div class="calendar-year"></div>
+        </div>
+
+        <div class="clock-container">
+            <div class="clock-time">
+                <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+            </div>
+        </div>
+
+        <div class="clouds-container">
+            <div class="cloudBigBar">
+                <img class="cloudBig" src="assets/img/cloudBig.png">
+            </div>
+            <div class="cloudMedBar">
+                <img class="cloudMed" src="assets/img/cloudMedium.png">
+            </div>
+            <div class="cloudSmallBar">
+                <img class="cloudSmall" src="assets/img/cloudSmall.png">
+            </div>
+        </div>
+
+        <div class="weather-container">
+            <div class="weather-icon"></div>
+            <div class="weather-temp"></div>
+            <div class="weather-location"></div>
+        </div>
+
+        <div class="menu-container">
+            <div class="menu-background"></div>
+            
+            <button type="button" class="menu-button-inner" onclick="toggleMenu()"></button>
+            <button type="button" class="cloud-switch app" onclick="toggleClouds()"></button>
+            <button type="button" class="time-switch app" onclick="switchTimeUnit()"></button>
+            <button type="button" class="temp-switch app" onclick="switchTempUnit()"></button>
+            
+            <div class="music-player">
+                <div class="music-details">
+                    <div class="song-source">PERSONA X</div>
+                    <div class="song-name">Song Name</div>
+                    <div class="song-artist">Artist Name</div>
+                </div>
+
+                <div class="music-controls">
+                    <div class="shuffle-songs" onclick="shuffleSongs()">
+                        <i class="fa fa-random fa-lg"></i>
+                    </div>
+                    <div class="prev-song" onclick="prevSong()">
+                        <i class="fa fa-step-backward fa-2x"></i>
+                    </div>
+                    <div class="playpause-song" onclick="playPause()">
+                        <i class="fa fa-play-circle fa-5x"></i>
+                    </div>
+                    <div class="skip-song" onclick="skipSong()">
+                        <i class="fa fa-step-forward fa-2x"></i>
+                    </div>
+                    <div class="repeat-song" onclick="repeatSong()">
+                        <i class="fa fa-retweet fa-lg"></i>
+                    </div>
+                </div>
+
+                <div class="music-slider">
+                    <div class="current-time">00:00</div>
+                    <input type="range" min="1" max="100" value="0" class="seek-slider" onchange="seekTo()">
+                    <div class="duration">00:00</div>
+                </div>
+                <div class="music-slider">
+                    <i class="fa fa-volume-down"></i>
+                    <input type="range" min="1" max="100" value="25" class="volume-slider" onchange="setVolume()">
+                    <i class="fa fa-volume-up"></i>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="menu-button-outer" onclick="toggleMenu()"></button>
+
+        <script src="script.js" async defer></script>
+    </body>
+>>>>>>> release/2.0.0
 </html>

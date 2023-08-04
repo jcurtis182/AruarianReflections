@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
   background-color: red;
   overflow: hidden;
@@ -361,4 +362,488 @@ body {
   background-image: url(assets/img/phone_icons/temp-icon.png);
   background-size: 110%;
   background-position: center;
+=======
+body {
+  background-color: red;
+  overflow: hidden;
+  margin: 0;
+}
+
+@font-face {
+  font-family: "P5 Plaintext";
+  src: url(assets/fonts/p5hatty.ttf);
+}
+
+/* City Backgrounds */
+.city, .cityBG {
+  position: absolute;
+  background-position: 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.cityBG {
+  background-image: url("assets/img/cityDay.jpg");
+  z-index: -1;
+}
+
+.city {
+  background-image: url(assets/img/cityNightOn.jpg);
+  z-index: 0;
+  opacity: 100%;
+  animation: flashingCity 3s linear infinite;
+}
+
+@keyframes flashingCity {
+  0% { opacity: 0%; }
+  50% { opacity: 100%; }
+  100% { opacity: 0%; }
+}
+
+/* Calendar Display */
+.calendar-container {
+  position: absolute;
+  height: 100px;
+  width: 250px;
+  top: 5%;
+  left: 0.5%;
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 1;
+  text-align: center;
+  rotate: -25deg;
+}
+
+.calendar-date, .calendar-year {
+  position: absolute;
+  width: 250px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 100px;
+  color: rgb(255, 255, 255);
+  z-index: 3;
+  text-shadow:
+    -3px -3px 0.5px #000,
+    0   -3px 0.5px #000,
+    3px -3px 0.5px #000,
+    3px  0   0.5px #000,
+    3px  3px 0.5px #000,
+    0    3px 0.5px #000,
+    -3px  3px 0.5px #000,
+    -3px  0   0.5px #000;
+  letter-spacing: 3px;
+}
+
+.calendar-year {
+  font-size: 25px;
+  padding-top: 30%;
+  text-shadow:
+    -2px -2px 0.5px #000,
+    0   -2px 0.5px #000,
+    2px -2px 0.5px #000,
+    2px  0   0.5px #000,
+    2px  2px 0.5px #000,
+    0    2px 0.5px #000,
+    -2px  2px 0.5px #000,
+    -2px  0   0.5px #000;
+}
+
+/* Clock Display */
+.clock-container {
+  position: absolute;
+  height: 100px;
+  width: 250px;
+  top: 5%;
+  left: 91%;
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 1;
+  text-align: center;
+  rotate: 25deg;
+}
+
+.clock-time {
+  position: absolute;
+  width: 250px;
+  top: 59%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 70px;
+  color: rgb(255, 255, 255);
+  z-index: 3;
+  text-shadow:
+    -3px -3px 0.5px #000,
+    0   -3px 0.5px #000,
+    3px -3px 0.5px #000,
+    3px  0   0.5px #000,
+    3px  3px 0.5px #000,
+    0    3px 0.5px #000,
+    -3px  3px 0.5px #000,
+    -3px  0   0.5px #000;
+  letter-spacing: 3px;
+}
+
+/* Clouds */
+.clouds-container {
+  display: inline;
+  pointer-events: none;
+}
+
+.cloudBigBar, .cloudMedBar, .cloudSmallBar {
+  position: absolute;
+  display: inline-block;
+  padding: 0%;
+  z-index: 5;
+  left: 50%;
+  top: 150%;
+  height: auto;
+  width: 50%;
+  transition: all 1s;
+	transform-origin: 0% 35%;
+}
+.cloudBigBar{
+  animation: orbit 200s linear infinite;
+  width: 1824px;
+}
+.cloudMedBar {
+  animation: orbitReverse 160s linear infinite;
+  width: 1920px;
+}
+.cloudSmallBar {
+  animation: orbit 150s linear infinite;
+  width: 1920px;
+}
+
+.cloudBig, .cloudMed, .cloudSmall {
+  left: 70%;
+  opacity: 90%;
+  padding: 0%;
+  position: absolute;
+  top: 100%;
+  height: 100px;
+  transform: rotate(90deg);
+}
+.cloudBig {
+  height: 150px;
+}
+.cloudMed {
+  height: 100px;
+}
+.cloudSmall {
+  height: 50px;
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(-30deg);
+  }
+  50% {
+    transform: rotate(-90deg);
+  }
+  100% {
+    transform: rotate(-150deg);
+  }
+}
+
+@keyframes orbitReverse {
+  0% {
+    transform: rotate(-150deg);
+  }
+  50% {
+    transform: rotate(-90deg);
+  }
+  100% {
+    transform: rotate(-30deg);
+  }
+}
+
+.weather-container {
+  position: absolute;
+  height: 25%;
+  width: 25%;
+  top: 90%;
+  left: 50%;
+  z-index: 5;
+  text-align: center;
+  transform: translateX(-50%) translateY(-50%);
+  pointer-events: none;
+}
+
+ /* Weather Display */
+.weather-icon {
+  position: absolute;
+  left: 73%;
+  transform: translateX(-50%) translateY(-50%);
+  animation: titter 2s steps(2) infinite;
+}
+.weather-temp {
+  font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 100px;
+  color: rgb(255, 255, 255);
+  text-shadow:
+    -3px -3px 0.5px #000,
+    0   -3px 0.5px #000,
+    3px -3px 0.5px #000,
+    3px  0   0.5px #000,
+    3px  3px 0.5px #000,
+    0    3px 0.5px #000,
+    -3px  3px 0.5px #000,
+    -3px  0   0.5px #000;
+  letter-spacing: 2px;
+}
+.weather-location {
+  font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 70px;
+  color: rgb(255, 255, 255);
+  text-shadow:
+    -3px -3px 0.5px #000,
+    0   -3px 0.5px #000,
+    3px -3px 0.5px #000,
+    3px  0   0.5px #000,
+    3px  3px 0.5px #000,
+    0    3px 0.5px #000,
+    -3px  3px 0.5px #000,
+    -3px  0   0.5px #000;
+  letter-spacing: 3px;
+}
+
+.weather-effects {
+  position: absolute;
+  background-position: 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  filter: grayscale(1);
+  mix-blend-mode: screen;
+}
+
+@keyframes titter {
+  0% {
+    transform: rotate(-20deg);
+  }
+  100%{
+    transform: rotate(-5deg);
+  }
+}
+
+/* Phone Menu */
+.menu-container {
+  position: absolute;
+  z-index: 95;
+  right: 20px;
+  bottom: 0;
+  height: 500px;
+  width: 350px;
+  background-color: black;
+  display: none;
+  border-top: 3px;
+  /* border-radius: 20px; */
+  outline: #ffffff solid 5px;
+}
+
+.menu-background {
+  position: absolute;
+  z-index: 96;
+  right: 7px;
+  bottom: 0px;
+  height: 493px;
+  width: 335px;
+  background-color: red;
+  transform: rotate(0.75deg);
+}
+
+.menu-button-inner {
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  background-color: transparent;
+  bottom: 15px;
+  right: 15px;
+  display: inline;
+  border-radius: 12px;
+  box-shadow: none;
+  z-index: 97;
+  background-image: url(assets/img/phone_icons/nav-icon.png);
+  background-size: 100%;
+}
+
+.menu-button-outer {
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  background-color: transparent;
+  bottom: 15px;
+  right: 35px;
+  display: inline;
+  border: none;
+  z-index: 99;
+  
+  background-image: url(assets/img/phone_icons/nav-icon.png);
+  background-size: 100%;
+  animation: wave 8s linear infinite;
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  25%{
+    transform: rotate(-7deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(7deg);
+  }
+  100%{
+    transform: rotate(0deg);
+  }
+}
+
+.app {
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  background-color: red;
+  top: 3%;
+  border-radius: 12px;
+  border-color: black;
+  background-size: 100%;
+  background-position: center;
+  z-index: 97;
+}
+
+.cloud-switch {
+  left: 5%;
+  background-image: url(assets/img/phone_icons/cloud-icon-on.png);
+}
+
+.time-switch {
+  left: 25%;
+  background-image: url(assets/img/phone_icons/time-icon-standard.png);
+}
+
+.temp-switch {
+  left: 45%;
+  background-image: url(assets/img/phone_icons/temp-icon.png);
+  background-size: 110%;
+}
+
+.music-player {
+  position: relative;
+  right: 0px;
+  bottom: -45%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 98;
+}
+
+.music-details {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 5px;
+  font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.song-source, .song-artist {
+  font-size: 1rem;
+}
+.song-name {
+  font-size: 2rem;
+} 
+
+
+.music-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.playpause-song, .prev-song, .skip-song,
+.shuffle-songs, .repeat-song {
+  padding: 5px;
+  opacity: 0.8;
+  transition: opacity .2s;
+}
+
+.shuffle-songs, .repeat-song {
+  padding: 0.75rem;
+  padding-top: 1.1rem;
+}
+
+.playpause-song:hover, .prev-song:hover, .skip-song:hover,
+.shuffle-songs:hover, .repeat-song:hover {
+  opacity: 1.0;
+}
+
+.music-slider {
+  width: 95%;
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ 
+.seek-slider, .volume-slider {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 5px;
+  background: black;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.seek-slider::-webkit-slider-thumb,
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: white;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.seek-slider:hover, .volume-slider:hover {
+  opacity: 1.0;
+}
+
+.seek-slider {
+  width: 60%;
+}
+ 
+.volume-slider {
+  width: 30%;
+}
+ 
+.current-time, .duration {
+  padding: 10px;
+}
+ 
+i.fa-volume-down,
+i.fa-volume-up {
+  padding: 5px;
+}
+ 
+i.fa-play-circle,
+i.fa-pause-circle,
+i.fa-step-forward,
+i.fa-step-backward,
+i.fa-random,
+i.fa-retweet {
+  cursor: pointer;
+>>>>>>> release/2.0.0
 }
