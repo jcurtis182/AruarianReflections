@@ -206,12 +206,13 @@ function switchTempUnit() {
         tempUnit = "C";
     }
 
+    updateWeather();
+
     tempButton.disabled = true;             //cooldown to limit api calls
     tempButton.style.backgroundImage = "url(assets/img/phone_icons/temp-icon-cd.png)";
     setTimeout(function() {
         tempButton.disabled  = false;
         tempButton.style.backgroundImage = "url(assets/img/phone_icons/temp-icon.png)";
-        updateWeather();                    //temp unit switch feels better after cooldown rather than during
     }, 5000);
     
 }
