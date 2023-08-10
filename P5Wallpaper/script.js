@@ -17,7 +17,7 @@ let timeUnit = "standard";
 let weatherUpdateMin = 15;
 
 window.addEventListener("load", () => { 
-    updateWeather();
+    // updateWeather();
     updateDate();
 });
 
@@ -324,7 +324,7 @@ function loadSong(song_index) {
     song_artist.textContent = song_list[song_index].artist;
     song_source.textContent = song_list[song_index].source;
 
-    //Update progression slider every 1000ms
+    //Update progress slider every second
     updateTimer = setInterval(seekUpdate, 1000);
 
     //When current song ends, play next song
@@ -450,7 +450,7 @@ function shuffleList(list) {
         temp;
     while (i--) {
         j = Math.floor(Math.random() * (i+1));
-        // swap randomly chosen element with current element
+        // swap randomly chosen index with current index
         temp = list[i];
         list[i] = list[j];
         list[j] = temp;

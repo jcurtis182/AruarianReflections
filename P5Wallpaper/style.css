@@ -17,6 +17,9 @@ body {
   background-size: cover;
   height: 100%;
   width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .cityBG {
@@ -28,7 +31,7 @@ body {
   background-image: url(assets/img/cityNightOn.jpg);
   z-index: 0;
   opacity: 100%;
-  animation: flashingCity 3s linear infinite;
+  /* animation: flashingCity 3s linear infinite; */
 }
 
 @keyframes flashingCity {
@@ -40,85 +43,121 @@ body {
 /* Calendar Display */
 .calendar-container {
   position: absolute;
-  height: 100px;
-  width: 250px;
-  top: 5%;
-  left: 0.5%;
-  background-color: rgba(255, 255, 255, 0);
-  z-index: 1;
-  text-align: center;
-  transform: rotate(-25deg);
-}
-
-.calendar-date, .calendar-year {
-  position: absolute;
-  width: 250px;
+  width: 400px;
+  height: 400px;
+  min-width: 100px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 100px;
-  color: rgb(255, 255, 255);
-  z-index: 3;
-  text-shadow:
-    -3px -3px 0.5px #000,
-    0   -3px 0.5px #000,
-    3px -3px 0.5px #000,
-    3px  0   0.5px #000,
-    3px  3px 0.5px #000,
-    0    3px 0.5px #000,
-    -3px  3px 0.5px #000,
-    -3px  0   0.5px #000;
-  letter-spacing: 3px;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: transparent;
+  border: 5px dotted blue;
 }
 
-.calendar-year {
-  font-size: 25px;
-  padding-top: 30%;
-  text-shadow:
-    -2px -2px 0.5px #000,
-    0   -2px 0.5px #000,
-    2px -2px 0.5px #000,
-    2px  0   0.5px #000,
-    2px  2px 0.5px #000,
-    0    2px 0.5px #000,
-    -2px  2px 0.5px #000,
-    -2px  0   0.5px #000;
-}
-
-/* Clock Display */
-.clock-container {
+.calendar-bg {
   position: absolute;
+  width: 50%;
+  height: 50%;
+  background-color: black;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-60%) rotate(-20deg);
+  border: solid 4px white;
+  outline: solid 4px black;
+  z-index: 10;
+}
+
+.cal-month-name, .cal-date {
+  position: absolute;
+  display: inline-block;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+
+  font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
+}
+
+.cal-month-name {
+  top: 30%;
+  font-size: 2.5rem;
+}
+
+.cal-date {
+  top: 55%;
+  font-size: 4.5rem;
+}
+
+.cal-month-num, .cal-time-sec, .slash {
+  display: inline-block;
+  color: white;
+}
+
+.cal-month-num {
+  justify-content: center;
+  font-size: 2.2rem;
+  padding-left: 5px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.cal-time-sec {
+  font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
+  position: absolute;
+  right: 5%;
+  top: 2%;
+  font-size: 2rem;
+}
+
+.cal-day {
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 11;
+  background-image: url(assets/img/week_days/monday.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 200px;
+  width: 300px;
+}
+
+.cal-dagger {
+  position: absolute;
+  width: 150px;
+  height: 200px;
+  right: 5%;
+  filter: contrast(2);
+  transform: rotate(9deg);
+  z-index: 13;
+  background-image: url(assets/img/dagger.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.cal-year {
+  position: absolute;
+  right: 10%;
+  top: 35%;
+  transform: rotate(5deg);
   height: 100px;
-  width: 250px;
-  top: 5%;
-  left: 91%;
-  background-color: rgba(255, 255, 255, 0);
-  z-index: 1;
-  text-align: center;
-  transform: rotate(25deg);
+  width: 100px;
+  z-index: 11;
+  background-image: url(assets/img/20XX.png);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
-.clock-time {
-  position: absolute;
-  width: 250px;
-  top: 59%;
-  left: 20%;
-  transform: translate(-50%, -50%);
-  font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 70px;
-  color: rgb(255, 255, 255);
-  z-index: 3;
-  text-shadow:
-    -3px -3px 0.5px #000,
-    0   -3px 0.5px #000,
-    3px -3px 0.5px #000,
-    3px  0   0.5px #000,
-    3px  3px 0.5px #000,
-    0    3px 0.5px #000,
-    -3px  3px 0.5px #000,
-    -3px  0   0.5px #000;
-  letter-spacing: 3px;
+.cal-time-container {
+
+}
+
+.cal-clock {
+
+}
+
+.time-period {
+
 }
 
 /* Clouds */
