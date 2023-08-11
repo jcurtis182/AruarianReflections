@@ -17,10 +17,10 @@ let day, month, hours, minutes, seconds, currentClockTime;
 const months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let timeUnit = "standard";
 
-let weatherUpdateMin = 15;
+let weatherUpdate = 10;         //how often in mins to update weather
 
 window.addEventListener("load", () => { 
-    // updateWeather();
+    updateWeather();
     updateDate();
 });
 
@@ -46,8 +46,9 @@ function updateDate() {
 
     checkDayNight();                                          //find background day/night before time conversion
 
-    if (timeUnit == "standard" && hours > 12) hours -= 12;    //standard time
-                                                              //military time by default
+    if (timeUnit == "standard" && hours > 12) hours -= 12;    //standard time calc; military time by default
+    else if (timeUnit == "military") timePeriod.innerHTML = ""; //hide am/pm in military time
+
     clockHr.innerHTML = checkZero(hours);
     clockMin.innerHTML = checkZero(minutes);
     clockSec.innerHTML = checkZero(seconds);
@@ -55,7 +56,7 @@ function updateDate() {
     setTimeout(updateDate, 1000)        //update every second
 }
 
-function checkZero(i) {         // add zero in front of numbers < 10
+function checkZero(i) {         //add zero in front of numbers < 10
     if (i < 10) {i = "0" + i};  
     return i;
 }
@@ -92,7 +93,7 @@ function updateWeather() {
                 else {
                     temperature.textContent = Math.floor((data.main.temp - 32) / 1.8) + "°C";
                 }
-                loc.textContent = data.name + ", " + data.sys.country;
+                loc.textContent = data.name;
                 let icon1 = data.weather[0].icon;
                 icon.innerHTML = 
                     `<img src="assets/img/weather_icons/${icon1}.png" style= 'height:100px'/>`;
@@ -102,7 +103,7 @@ function updateWeather() {
         });
     }
     console.log("Weather updated");
-    setTimeout(updateWeather, weatherUpdateMin*60000)        //update every 15min (min to ms)
+    setTimeout(updateWeather, weatherUpdate*60000);
 }
 
 let effectsEnabled = true;
