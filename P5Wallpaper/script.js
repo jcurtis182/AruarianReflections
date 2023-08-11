@@ -1,20 +1,23 @@
-let calDay = document.getElementById("day");
-let calMonth = document.getElementById("month");
-let calYear = document.querySelector(".calendar-year");
+let calDate = document.querySelector(".cal-date")
+let calMonthNum = document.querySelector(".cal-month-num")
+let calMonthName = document.querySelector(".cal-month-name")
+let calDay = document.querySelector(".cal-day");
 
 let clockHr = document.getElementById("hours");
 let clockMin = document.getElementById("minutes");
-let clockSec = document.getElementById("seconds");
+let clockSec = document.querySelector(".cal-time-sec");
+let timePeriod = document.getElementById("time-period");
 
 let city = document.querySelector(".city");
 let cityBG = document.querySelector(".cityBG");
 let clouds = document.querySelector(".clouds-container");
 
 let date = new Date();
-let day, month, year, hours, minutes, seconds, currentClockTime;
+let day, month, hours, minutes, seconds, currentClockTime;
+const months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let timeUnit = "standard";
 
-let weatherUpdateMin = 15;
+let weatherUpdate = 10;         //how often in mins to update weather
 
 window.addEventListener("load", () => { 
     updateWeather();
@@ -26,22 +29,26 @@ function updateDate() {
     let date = new Date();
 
     day = checkZero(date.getDate());
-    month = checkZero(date.getMonth() + 1);     //+1 bc months start at 0
-    year = checkZero(date.getFullYear());
+    month = date.getMonth() + 1;     //+1 bc months start at 0
 
     hours = date.getHours();
     minutes = date.getMinutes();
     seconds = date.getSeconds();
     currentClockTime = hours + ":" + minutes + ":" + seconds;
 
-    calDay.innerHTML = day;
-    calMonth.innerHTML = month;
-    calYear.innerHTML = year;
+    calDate.innerHTML = day;
+    calMonthNum.innerHTML = month;
+    calMonthName.innerHTML = months[month-1];
+    calDay.style.backgroundImage = `url(assets/img/week_days/day${date.getDay()}.png)`;
+
+    if (hours >= 13) timePeriod.innerHTML = "PM";
+    else timePeriod.innerHTML = "AM";
 
     checkDayNight();                                          //find background day/night before time conversion
 
-    if (timeUnit == "standard" && hours > 12) hours -= 12;    //standard time
-                                                              //military time by default
+    if (timeUnit == "standard" && hours > 12) hours -= 12;    //standard time calc; military time by default
+    else if (timeUnit == "military") timePeriod.innerHTML = ""; //hide am/pm in military time
+
     clockHr.innerHTML = checkZero(hours);
     clockMin.innerHTML = checkZero(minutes);
     clockSec.innerHTML = checkZero(seconds);
@@ -49,7 +56,7 @@ function updateDate() {
     setTimeout(updateDate, 1000)        //update every second
 }
 
-function checkZero(i) {         // add zero in front of numbers < 10
+function checkZero(i) {         //add zero in front of numbers < 10
     if (i < 10) {i = "0" + i};  
     return i;
 }
@@ -86,7 +93,7 @@ function updateWeather() {
                 else {
                     temperature.textContent = Math.floor((data.main.temp - 32) / 1.8) + "°C";
                 }
-                loc.textContent = data.name + ", " + data.sys.country;
+                loc.textContent = data.name;
                 let icon1 = data.weather[0].icon;
                 icon.innerHTML = 
                     `<img src="assets/img/weather_icons/${icon1}.png" style= 'height:100px'/>`;
@@ -96,7 +103,7 @@ function updateWeather() {
         });
     }
     console.log("Weather updated");
-    setTimeout(updateWeather, weatherUpdateMin*60000)        //update every 15min (min to ms)
+    setTimeout(updateWeather, weatherUpdate*60000);
 }
 
 let effectsEnabled = true;
@@ -106,7 +113,7 @@ function weatherEffects(weather) {
         switch (weather) {
             case '09d':
             case '11d':
-                city.style.filter = 'saturate(40%)';         //darken sky if raining during day
+                city.style.filter = 'saturate(50%)';         //darken sky if raining during day
             case '09n':
             case '10n':
             case '11n':
@@ -124,6 +131,9 @@ function weatherEffects(weather) {
                 break;
             default:
                 effects.style.backgroundImage = "";
+                effects.style.opacity = '100%';
+                city.style.filter = 'saturate(100%)';
+                effects.style.filter = 'blur(0px)';
         }
     }
 }
@@ -324,7 +334,7 @@ function loadSong(song_index) {
     song_artist.textContent = song_list[song_index].artist;
     song_source.textContent = song_list[song_index].source;
 
-    //Update progression slider every 1000ms
+    //Update progress slider every second
     updateTimer = setInterval(seekUpdate, 1000);
 
     //When current song ends, play next song
@@ -450,7 +460,7 @@ function shuffleList(list) {
         temp;
     while (i--) {
         j = Math.floor(Math.random() * (i+1));
-        // swap randomly chosen element with current element
+        // swap randomly chosen index with current index
         temp = list[i];
         list[i] = list[j];
         list[j] = temp;
