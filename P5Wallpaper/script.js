@@ -472,10 +472,6 @@ loadSong(song_index);
 setVolume();
 
 //STATUS                TODO                                                            EFFORT REQ
-// [-]      lore accurate calendar display                                              high
-//              array for month num to name
-//              weekdays likely individual images, so array as well
-//              knife image
 // [-]      lore accurate weather display                                               high
 // [-]      separate settings and music player into separate menues                     med
 
