@@ -1,17 +1,20 @@
-let calDay = document.getElementById("day");
-let calMonth = document.getElementById("month");
-let calYear = document.querySelector(".calendar-year");
+let calDate = document.querySelector(".cal-date")
+let calMonthNum = document.querySelector(".cal-month-num")
+let calMonthName = document.querySelector(".cal-month-name")
+let calDay = document.querySelector(".cal-day");
 
 let clockHr = document.getElementById("hours");
 let clockMin = document.getElementById("minutes");
-let clockSec = document.getElementById("seconds");
+let clockSec = document.querySelector(".cal-time-sec");
+let timePeriod = document.getElementById("time-period");
 
 let city = document.querySelector(".city");
 let cityBG = document.querySelector(".cityBG");
 let clouds = document.querySelector(".clouds-container");
 
 let date = new Date();
-let day, month, year, hours, minutes, seconds, currentClockTime;
+let day, month, hours, minutes, seconds, currentClockTime;
+const months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let timeUnit = "standard";
 
 let weatherUpdateMin = 15;
@@ -26,17 +29,20 @@ function updateDate() {
     let date = new Date();
 
     day = checkZero(date.getDate());
-    month = checkZero(date.getMonth() + 1);     //+1 bc months start at 0
-    year = checkZero(date.getFullYear());
+    month = date.getMonth() + 1;     //+1 bc months start at 0
 
     hours = date.getHours();
     minutes = date.getMinutes();
     seconds = date.getSeconds();
     currentClockTime = hours + ":" + minutes + ":" + seconds;
 
-    calDay.innerHTML = day;
-    calMonth.innerHTML = month;
-    calYear.innerHTML = year;
+    calDate.innerHTML = day;
+    calMonthNum.innerHTML = month;
+    calMonthName.innerHTML = months[month-1];
+    calDay.style.backgroundImage = `url(assets/img/week_days/day${date.getDay()}.png)`;
+
+    if (hours >= 13) timePeriod.innerHTML = "PM";
+    else timePeriod.innerHTML = "AM";
 
     checkDayNight();                                          //find background day/night before time conversion
 

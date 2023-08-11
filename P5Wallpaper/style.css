@@ -12,7 +12,7 @@ body {
 /* City Backgrounds */
 .city, .cityBG {
   position: absolute;
-  background-position: 0%;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
@@ -50,7 +50,6 @@ body {
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   background-color: transparent;
-  border: 5px dotted blue;
 }
 
 .calendar-bg {
@@ -115,7 +114,7 @@ body {
   top: 70%;
   transform: translateX(-50%) translateY(-50%);
   z-index: 11;
-  background-image: url(assets/img/week_days/monday.png);
+  background-image: url(assets/img/week_days/day1.png);
   background-size: contain;
   background-repeat: no-repeat;
   height: 200px;
@@ -148,12 +147,24 @@ body {
   background-repeat: no-repeat;
 }
 
-.cal-time-container {
-
+.cal-clock {
+  display: flex;
+  position: absolute;
+  background-color: white;
+  justify-content: center;
+  line-height: 38px;
+  width: 40%;
+  left: 50%;
+  top: 77%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 14;
+  font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 2.3rem;
+  outline: solid black 3px;
 }
 
-.cal-clock {
-
+.cal-time {
+  padding-top: 3px;
 }
 
 .time-period {
