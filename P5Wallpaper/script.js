@@ -113,7 +113,7 @@ function weatherEffects(weather) {
         switch (weather) {
             case '09d':
             case '11d':
-                city.style.filter = 'saturate(40%)';         //darken sky if raining during day
+                city.style.filter = 'saturate(50%)';         //darken sky if raining during day
             case '09n':
             case '10n':
             case '11n':
@@ -131,6 +131,9 @@ function weatherEffects(weather) {
                 break;
             default:
                 effects.style.backgroundImage = "";
+                effects.style.opacity = '100%';
+                city.style.filter = 'saturate(100%)';
+                effects.style.filter = 'blur(0px)';
         }
     }
 }
