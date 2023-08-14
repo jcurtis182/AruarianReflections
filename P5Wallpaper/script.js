@@ -19,7 +19,7 @@ let timeUnit = "standard";
 
 let weatherUpdate = 10;         //how often in mins to update weather
 
-window.addEventListener("load", () => { 
+window.addEventListener("load", () => {
     updateWeather();
     updateDate();
 });
@@ -38,7 +38,7 @@ function updateDate() {
 
     calDate.innerHTML = day;
     calMonthNum.innerHTML = month;
-    calMonthName.innerHTML = months[month-1];
+    calMonthName.innerHTML = months[month - 1];
     calDay.style.backgroundImage = `url(assets/img/week_days/day${date.getDay()}.png)`;
 
     if (hours >= 13) timePeriod.innerHTML = "PM";
@@ -57,7 +57,7 @@ function updateDate() {
 }
 
 function checkZero(i) {         //add zero in front of numbers < 10
-    if (i < 10) {i = "0" + i};  
+    if (i < 10) { i = "0" + i };
     return i;
 }
 
@@ -73,43 +73,43 @@ function updateWeather() {
         navigator.geolocation.getCurrentPosition((position) => {
             lon = position.coords.longitude;
             lat = position.coords.latitude;
-        
+
             // API ID
             const api = "6d055e39ee237af35ca066f35474e9df";
-        
+
             // API URL
             const base =
                 `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${api}`;
-        
+
             // Calling the API
             fetch(base)
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                if (tempUnit == "F"){
-                    temperature.textContent = Math.floor(data.main.temp) + "°F";
-                }
-                else {
-                    temperature.textContent = Math.floor((data.main.temp - 32) / 1.8) + "°C";
-                }
-                loc.textContent = data.name;
-                let icon1 = data.weather[0].icon;
-                icon.innerHTML = 
-                    `<img src="assets/img/weather_icons/${icon1}.png" style= 'height:100px'/>`;
-                
-                weatherEffects("'" + icon1 + "'");
-            });
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    if (tempUnit == "F") {
+                        temperature.textContent = Math.floor(data.main.temp) + "°F";
+                    }
+                    else {
+                        temperature.textContent = Math.floor((data.main.temp - 32) / 1.8) + "°C";
+                    }
+                    loc.textContent = data.name;
+                    let icon1 = data.weather[0].icon;
+                    icon.innerHTML =
+                        `<img src="assets/img/weather_icons/${icon1}.png" style= 'height:100px'/>`;
+
+                    weatherEffects("'" + icon1 + "'");
+                });
         });
     }
     console.log("Weather updated");
-    setTimeout(updateWeather, weatherUpdate*60000);
+    setTimeout(updateWeather, weatherUpdate * 60000);
 }
 
 let effectsEnabled = true;
 let effects = document.querySelector(".weather-effects");
 function weatherEffects(weather) {
-    if (effectsEnabled){
+    if (effectsEnabled) {
         switch (weather) {
             case '09d':
             case '11d':
@@ -142,7 +142,7 @@ function weatherEffects(weather) {
 let menu = document.querySelector(".menu-container");
 let menuButton = document.querySelector(".menu-button-outer");
 
-function toggleMenu(){
+function toggleMenu() {
     if (menu.style.display == "inline") {
         console.log("Hiding menu.")
         menu.style.display = "none";
@@ -171,12 +171,13 @@ function toggleClouds() {
 
 let cloudStatus = "";
 function checkDayNight() {      //city day/night cycle
-    if (hours >= 6 && hours < 18){     //day = 6am->6pm
+    if (hours >= 6 && hours < 18) {     //day = 6am->6pm
         city.style.backgroundImage = "url(assets/img/cityDay.jpg)";
         city.style.animation = "none";
 
         clouds.style.display = "inline";
-        if (cloudButton.style.display = "url(assets/img/phone_icons/cloud-icon-night.png)") cloudButton.style.display = cloudStatus;    //restore previous status if page was loaded throughout the cycle
+        if (cloudButton.style.display = "url(assets/img/phone_icons/cloud-icon-night.png)")
+            cloudButton.style.display = cloudStatus;    //restore previous cloud toggle status 
         cloudButton.disabled = false;
     }
     else {
@@ -193,7 +194,7 @@ function checkDayNight() {      //city day/night cycle
 
 let timeButton = document.querySelector(".time-switch");
 function switchTimeUnit() {
-    if (timeUnit == "military"){
+    if (timeUnit == "military") {
         console.log("Switching to standard time.");
         timeUnit = "standard";
         timeButton.style.backgroundImage = "url(assets/img/phone_icons/time-icon-standard.png)";
@@ -205,9 +206,9 @@ function switchTimeUnit() {
     }
 }
 
-let tempButton = document.querySelector(".temp-switch"); 
+let tempButton = document.querySelector(".temp-switch");
 function switchTempUnit() {
-    if (tempUnit == "C"){
+    if (tempUnit == "C") {
         console.log("Switching to Fahrenheit.");
         tempUnit = "F";
     }
@@ -220,11 +221,10 @@ function switchTempUnit() {
 
     tempButton.disabled = true;             //cooldown to limit api calls
     tempButton.style.backgroundImage = "url(assets/img/phone_icons/temp-icon-cd.png)";
-    setTimeout(function() {
-        tempButton.disabled  = false;
+    setTimeout(function () {
+        tempButton.disabled = false;
         tempButton.style.backgroundImage = "url(assets/img/phone_icons/temp-icon.png)";
     }, 5000);
-    
 }
 
 const song_list_ordered = [
@@ -306,17 +306,17 @@ let song_list = JSON.parse(JSON.stringify(song_list_ordered));
 let song_source = document.querySelector(".song-source");
 let song_name = document.querySelector(".song-name");
 let song_artist = document.querySelector(".song-artist");
- 
+
 let playpause_btn = document.querySelector(".playpause-song");
 let skip_btn = document.querySelector(".skip-song");
 let prev_btn = document.querySelector(".prev-song");
- 
+
 let seek_slider = document.querySelector(".seek-slider");
 let volume_slider = document.querySelector(".volume-slider");
 let curr_time = document.querySelector(".current-time");
 let song_duration = document.querySelector(".duration");
 let seekPos = 0;
- 
+
 let song_index = 0;
 let isPlaying = false;
 let updateTimer;
@@ -396,7 +396,7 @@ function shuffleSongs() {
         console.log("Song list shuffled.");
         console.log("Song index is now: " + song_index);
     }
-    else { 
+    else {
         shuffleButton.style.color = "black";
         //revert back to original song order
         song_index = song_list[song_index].order - 1;
@@ -443,10 +443,10 @@ function seekUpdate() {
         let durationSec = Math.floor(current_song.duration - durationMin * 60);
 
         //add zero to single digit time values
-        if (currentSec < 10) currentSec = "0" + currentSec; 
-        if (durationSec < 10) durationSec = "0" + durationSec; 
-        if (currentMin < 10) currentMin = "0" + currentMin; 
-        if (durationMin < 10) durationMin = "0" + durationMin; 
+        if (currentSec < 10) currentSec = "0" + currentSec;
+        if (durationSec < 10) durationSec = "0" + durationSec;
+        if (currentMin < 10) currentMin = "0" + currentMin;
+        if (durationMin < 10) durationMin = "0" + durationMin;
 
         //display updated duration
         curr_time.textContent = currentMin + ":" + currentSec;
@@ -459,7 +459,7 @@ function shuffleList(list) {
         j = 0,
         temp;
     while (i--) {
-        j = Math.floor(Math.random() * (i+1));
+        j = Math.floor(Math.random() * (i + 1));
         // swap randomly chosen index with current index
         temp = list[i];
         list[i] = list[j];

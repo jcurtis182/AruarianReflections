@@ -10,13 +10,14 @@ body {
 }
 
 /* City Backgrounds */
-.city, .cityBG {
+.city,
+.cityBG {
   position: absolute;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100%;
-  width: 100%;
+  height: 101%;
+  width: 101%;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
@@ -35,9 +36,17 @@ body {
 }
 
 @keyframes flashingCity {
-  0% { opacity: 0%; }
-  50% { opacity: 100%; }
-  100% { opacity: 0%; }
+  0% {
+    opacity: 0%;
+  }
+
+  50% {
+    opacity: 100%;
+  }
+
+  100% {
+    opacity: 0%;
+  }
 }
 
 /* Calendar Display */
@@ -65,7 +74,8 @@ body {
   z-index: 10;
 }
 
-.cal-month-name, .cal-date {
+.cal-month-name,
+.cal-date {
   position: absolute;
   display: inline-block;
   align-items: center;
@@ -88,7 +98,9 @@ body {
   font-size: 4.5rem;
 }
 
-.cal-month-num, .cal-time-sec, .slash {
+.cal-month-num,
+.cal-time-sec,
+.slash {
   display: inline-block;
   color: white;
 }
@@ -173,7 +185,9 @@ body {
   pointer-events: none;
 }
 
-.cloudBigBar, .cloudMedBar, .cloudSmallBar {
+.cloudBigBar,
+.cloudMedBar,
+.cloudSmallBar {
   position: absolute;
   display: inline-block;
   padding: 0%;
@@ -183,22 +197,27 @@ body {
   height: auto;
   width: 50%;
   transition: all 1s;
-	transform-origin: 0% 35%;
+  transform-origin: 0% 35%;
 }
-.cloudBigBar{
+
+.cloudBigBar {
   animation: orbit 200s linear infinite;
   width: 1824px;
 }
+
 .cloudMedBar {
   animation: orbitReverse 160s linear infinite;
   width: 1920px;
 }
+
 .cloudSmallBar {
   animation: orbit 150s linear infinite;
   width: 1920px;
 }
 
-.cloudBig, .cloudMed, .cloudSmall {
+.cloudBig,
+.cloudMed,
+.cloudSmall {
   left: 70%;
   opacity: 90%;
   padding: 0%;
@@ -207,12 +226,15 @@ body {
   height: 100px;
   transform: rotate(90deg);
 }
+
 .cloudBig {
   height: 150px;
 }
+
 .cloudMed {
   height: 100px;
 }
+
 .cloudSmall {
   height: 50px;
 }
@@ -221,9 +243,11 @@ body {
   0% {
     transform: rotate(-30deg);
   }
+
   50% {
     transform: rotate(-90deg);
   }
+
   100% {
     transform: rotate(-150deg);
   }
@@ -233,9 +257,11 @@ body {
   0% {
     transform: rotate(-150deg);
   }
+
   50% {
     transform: rotate(-90deg);
   }
+
   100% {
     transform: rotate(-30deg);
   }
@@ -253,7 +279,7 @@ body {
   pointer-events: none;
 }
 
- /* Weather Display */
+/* Weather Display */
 .weather-icon {
   position: absolute;
   top: -5%;
@@ -262,34 +288,36 @@ body {
   /* background-color: #ffffff; */
   animation: titter 2s steps(2) infinite;
 }
+
 .weather-temp {
   font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
   font-size: 5rem;
   color: rgb(255, 255, 255);
   text-shadow:
     -3px -3px 0.5px #000,
-    0   -3px 0.5px #000,
+    0 -3px 0.5px #000,
     3px -3px 0.5px #000,
-    3px  0   0.5px #000,
-    3px  3px 0.5px #000,
-    0    3px 0.5px #000,
-    -3px  3px 0.5px #000,
-    -3px  0   0.5px #000;
+    3px 0 0.5px #000,
+    3px 3px 0.5px #000,
+    0 3px 0.5px #000,
+    -3px 3px 0.5px #000,
+    -3px 0 0.5px #000;
   letter-spacing: 2px;
 }
+
 .weather-location {
   font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
   font-size: 4rem;
   color: rgb(255, 255, 255);
   text-shadow:
     -3px -3px 0.5px #000,
-    0   -3px 0.5px #000,
+    0 -3px 0.5px #000,
     3px -3px 0.5px #000,
-    3px  0   0.5px #000,
-    3px  3px 0.5px #000,
-    0    3px 0.5px #000,
-    -3px  3px 0.5px #000,
-    -3px  0   0.5px #000;
+    3px 0 0.5px #000,
+    3px 3px 0.5px #000,
+    0 3px 0.5px #000,
+    -3px 3px 0.5px #000,
+    -3px 0 0.5px #000;
   letter-spacing: 3px;
 }
 
@@ -308,7 +336,8 @@ body {
   0% {
     transform: rotate(-20deg);
   }
-  100%{
+
+  100% {
     transform: rotate(-5deg);
   }
 }
@@ -364,7 +393,7 @@ body {
   display: inline;
   border: none;
   z-index: 99;
-  
+
   background-image: url(assets/img/phone_icons/nav-icon.png);
   background-size: 100%;
   animation: wave 8s linear infinite;
@@ -374,16 +403,20 @@ body {
   0% {
     transform: rotate(0deg);
   }
-  25%{
+
+  25% {
     transform: rotate(-7deg);
   }
+
   50% {
     transform: rotate(0deg);
   }
+
   75% {
     transform: rotate(7deg);
   }
-  100%{
+
+  100% {
     transform: rotate(0deg);
   }
 }
@@ -438,12 +471,14 @@ body {
   font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.song-source, .song-artist {
+.song-source,
+.song-artist {
   font-size: 1rem;
 }
+
 .song-name {
   font-size: 2rem;
-} 
+}
 
 
 .music-controls {
@@ -452,20 +487,27 @@ body {
   align-items: center;
 }
 
-.playpause-song, .prev-song, .skip-song,
-.shuffle-songs, .repeat-song {
+.playpause-song,
+.prev-song,
+.skip-song,
+.shuffle-songs,
+.repeat-song {
   padding: 5px;
   opacity: 0.8;
   transition: opacity .2s;
 }
 
-.shuffle-songs, .repeat-song {
+.shuffle-songs,
+.repeat-song {
   padding: 0.75rem;
   padding-top: 1.1rem;
 }
 
-.playpause-song:hover, .prev-song:hover, .skip-song:hover,
-.shuffle-songs:hover, .repeat-song:hover {
+.playpause-song:hover,
+.prev-song:hover,
+.skip-song:hover,
+.shuffle-songs:hover,
+.repeat-song:hover {
   opacity: 1.0;
 }
 
@@ -476,8 +518,9 @@ body {
   justify-content: center;
   align-items: center;
 }
- 
-.seek-slider, .volume-slider {
+
+.seek-slider,
+.volume-slider {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -500,27 +543,29 @@ body {
   border-radius: 50%;
 }
 
-.seek-slider:hover, .volume-slider:hover {
+.seek-slider:hover,
+.volume-slider:hover {
   opacity: 1.0;
 }
 
 .seek-slider {
   width: 60%;
 }
- 
+
 .volume-slider {
   width: 30%;
 }
- 
-.current-time, .duration {
+
+.current-time,
+.duration {
   padding: 10px;
 }
- 
+
 i.fa-volume-down,
 i.fa-volume-up {
   padding: 5px;
 }
- 
+
 i.fa-play-circle,
 i.fa-pause-circle,
 i.fa-step-forward,
