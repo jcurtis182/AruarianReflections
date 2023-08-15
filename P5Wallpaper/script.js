@@ -41,7 +41,7 @@ function updateDate() {
     calMonthName.innerHTML = months[month - 1];
     calDay.style.backgroundImage = `url(assets/img/week_days/day${date.getDay()}.png)`;
 
-    if (hours >= 13) timePeriod.innerHTML = "PM";
+    if (hours >= 12) timePeriod.innerHTML = "PM";
     else timePeriod.innerHTML = "AM";
 
     checkDayNight();                                          //find background day/night before time conversion
