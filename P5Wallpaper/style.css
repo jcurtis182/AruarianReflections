@@ -70,7 +70,7 @@ body {
   left: 50%;
   transform: translateX(-60%) rotate(-20deg);
   border: solid 4px white;
-  outline: solid 4px black;
+  outline: solid 5px black;
   z-index: 10;
 }
 
@@ -148,11 +148,11 @@ body {
 
 .cal-year {
   position: absolute;
-  right: 10%;
-  top: 35%;
+  right: 5%;
+  top: 32%;
   transform: rotate(5deg);
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
   z-index: 11;
   background-image: url(assets/img/20XX.png);
   background-size: contain;
@@ -164,19 +164,19 @@ body {
   position: absolute;
   background-color: white;
   justify-content: center;
-  line-height: 38px;
+  line-height: 33px;
   width: 40%;
   left: 50%;
-  top: 77%;
+  top: 76%;
   transform: translateX(-50%) translateY(-50%);
   z-index: 14;
   font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 2.3rem;
-  outline: solid black 3px;
+  font-size: 2.8rem;
+  outline: solid black 4px;
 }
 
 .cal-time {
-  padding-top: 3px;
+  padding-top: 6px;
 }
 
 /* Clouds */

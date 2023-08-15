@@ -475,4 +475,4 @@ setVolume();
 // [-]      lore accurate weather display                                               high
 // [-]      separate settings and music player into separate menues                     med
 
-// [~]    toggle individual displays (clouds, clock, calendar, weather, etc.)           med
+// [~]    toggle individual displays (clouds, clock, calendar, weather, etc.)           varied
