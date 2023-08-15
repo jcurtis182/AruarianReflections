@@ -49,7 +49,7 @@ function updateDate() {
     if (timeUnit == "standard" && hours > 12) hours -= 12;    //standard time calc; military time by default
     else if (timeUnit == "military") timePeriod.innerHTML = ""; //hide am/pm in military time
 
-    clockHr.innerHTML = checkZero(hours);
+    clockHr.innerHTML = hours;
     clockMin.innerHTML = checkZero(minutes);
     clockSec.innerHTML = checkZero(seconds);
 
@@ -96,8 +96,7 @@ function updateWeather() {
                     loc.textContent = data.name;
                     let icon1 = data.weather[0].icon;
                     icon.innerHTML =
-                        `<img src="assets/img/weather_icons/${icon1}.png" style= 'height:100px'/>`;
-
+                        `<img src="assets/img/weather_icons/${icon1}.png" style= 'height:100px' alt="weather icon"/>`;
                     weatherEffects("'" + icon1 + "'");
                 });
         });

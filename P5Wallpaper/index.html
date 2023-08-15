@@ -38,18 +38,20 @@
 
     <div class="clouds-container">
         <div class="cloudBigBar">
-            <img class="cloudBig" src="assets/img/cloudBig.png">
+            <img class="cloudBig" src="assets/img/cloudBig.png" alt="large cloud">
         </div>
         <div class="cloudMedBar">
-            <img class="cloudMed" src="assets/img/cloudMedium.png">
+            <img class="cloudMed" src="assets/img/cloudMedium.png" alt="medium cloud">
         </div>
         <div class="cloudSmallBar">
-            <img class="cloudSmall" src="assets/img/cloudSmall.png">
+            <img class="cloudSmall" src="assets/img/cloudSmall.png" alt="small cloud">
         </div>
     </div>
 
     <div class="weather-container">
-        <div class="weather-icon"></div>
+        <div class="weather-icon-container">
+            <div class="weather-icon" alt="weather icon"></div>
+        </div>
         <div class="weather-temp"></div>
         <div class="weather-location"></div>
     </div>
@@ -57,10 +59,10 @@
     <div class="menu-container">
         <div class="menu-background"></div>
 
-        <button type="button" class="menu-button-inner" onclick="toggleMenu()"></button>
-        <button type="button" class="cloud-switch app" onclick="toggleClouds()"></button>
-        <button type="button" class="time-switch app" onclick="switchTimeUnit()"></button>
-        <button type="button" class="temp-switch app" onclick="switchTempUnit()"></button>
+        <button type="button" class="menu-button-inner" onclick="toggleMenu()" alt="exit menu"></button>
+        <button type="button" class="cloud-switch app" onclick="toggleClouds()" alt="toggle clouds"></button>
+        <button type="button" class="time-switch app" onclick="switchTimeUnit()" alt="toggle military time"></button>
+        <button type="button" class="temp-switch app" onclick="switchTempUnit()" alt="toggle temp units"></button>
 
         <div class="music-player">
             <div class="music-details">

@@ -267,6 +267,7 @@ body {
   }
 }
 
+/* Weather Display */
 .weather-container {
   position: absolute;
   height: 25%;
@@ -279,13 +280,15 @@ body {
   pointer-events: none;
 }
 
-/* Weather Display */
-.weather-icon {
+.weather-icon-container {
   position: absolute;
-  top: -5%;
-  left: 70%;
-  transform: translateX(-50%) translateY(-50%);
   /* background-color: #ffffff; */
+  top: 15%;
+  left: 82%;
+  transform: translateX(-50%) translateY(-50%) rotate(-10deg);
+}
+
+.weather-icon {
   animation: titter 2s steps(2) infinite;
 }
 
