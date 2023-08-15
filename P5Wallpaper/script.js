@@ -284,20 +284,28 @@ const song_list_ordered = [
         path: "assets/audio/Persona_4-Heaven.mp3"
     },
     {
-        name: "Memories of You",
+        name: "When The Moon's Reaching Out Stars",
         source: "Persona 3",
         artist: "Yumi Kawamura",
         order: 9,
+        path: "assets/audio/Persona_3-When_The_Moons_Reaching_Out_Stars.mp3"
+    },
+    {
+        name: "Memories of You",
+        source: "Persona 3",
+        artist: "Yumi Kawamura",
+        order: 10,
         path: "assets/audio/Persona_3-Kimi_no_Kioku_Memories_of_You.mp3"
     },
     {
         name: "A Lone Prayer",
         source: "Persona 1 (PSP)",
         artist: "Yumi Kawamura",
-        order: 10,
+        order: 11,
         path: "assets/audio/Persona_1-A_Lone_Prayer.mp3"
     }
 ];
+
 
 //create object copy for us to modify without changing original order
 let song_list = JSON.parse(JSON.stringify(song_list_ordered));

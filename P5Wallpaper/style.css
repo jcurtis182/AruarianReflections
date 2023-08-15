@@ -468,9 +468,12 @@ body {
 .music-details {
   display: flex;
   align-items: center;
+  text-align: center;
   flex-direction: column;
   justify-content: center;
   margin-top: 5px;
+  max-width: 90%;
+  text-overflow: ellipsis;
   font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
 }
 
