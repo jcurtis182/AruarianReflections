@@ -249,59 +249,80 @@ const song_list_ordered = [
         path: "assets/audio/Persona_5-Layer_Cake.mp3"
     },
     {
+        name: "Break In To Break Out",
+        source: "Persona 5: The Animation",
+        artist: "Lyn",
+        order: 4,
+        path: "assets/audio/Persona_5_Animation-Break_In_To_Break_Out.mp3"
+    },
+    {
         name: "I Believe",
         source: "Persona 5 Royal",
         artist: "Lyn",
-        order: 4,
+        order: 5,
         path: "assets/audio/Persona_5_Royal-I_Believe.mp3"
     },
     {
         name: "No More What Ifs",
         source: "Persona 5 Royal",
         artist: "Lyn",
-        order: 5,
+        order: 6,
         path: "assets/audio/Persona_5_Royal-No_More_What_Ifs.mp3"
     },
     {
         name: "Heartbeat, Heartbreak",
         source: "Persona 4",
         artist: "Shihoko Hirata",
-        order: 6,
+        order: 7,
         path: "assets/audio/Persona_4-Heartbeat_Heartbreak.mp3"
     },
     {
         name: "Signs of Love",
         source: "Persona 4",
         artist: "Shihoko Hirata",
-        order: 7,
+        order: 8,
         path: "assets/audio/Persona_4-Signs_of_Love.mp3"
     },
     {
         name: "Heaven",
         source: "Persona 4",
         artist: "Shihoko Hirata",
-        order: 8,
+        order: 9,
         path: "assets/audio/Persona_4-Heaven.mp3"
+    },
+    {
+        name: "Never More",
+        source: "Persona 4",
+        artist: "Shihoko Hirata",
+        order: 10,
+        path: "assets/audio/Persona_4-Never_More.mp3"
     },
     {
         name: "When The Moon's Reaching Out Stars",
         source: "Persona 3",
         artist: "Yumi Kawamura",
-        order: 9,
+        order: 11,
         path: "assets/audio/Persona_3-When_The_Moons_Reaching_Out_Stars.mp3"
+    },
+    {
+        name: "A Way of Life",
+        source: "Persona 3",
+        artist: "Mayumi Fujita",
+        order: 12,
+        path: "assets/audio/Persona_3_Portable-A_Way_Of_Life.mp3"
     },
     {
         name: "Memories of You",
         source: "Persona 3",
         artist: "Yumi Kawamura",
-        order: 10,
+        order: 13,
         path: "assets/audio/Persona_3-Kimi_no_Kioku_Memories_of_You.mp3"
     },
     {
         name: "A Lone Prayer",
         source: "Persona 1 (PSP)",
         artist: "Yumi Kawamura",
-        order: 11,
+        order: 14,
         path: "assets/audio/Persona_1-A_Lone_Prayer.mp3"
     }
 ];
