@@ -1,22 +1,25 @@
-let calDay = document.getElementById("day");
-let calMonth = document.getElementById("month");
-let calYear = document.querySelector(".calendar-year");
+let calDate = document.querySelector(".cal-date")
+let calMonthNum = document.querySelector(".cal-month-num")
+let calMonthName = document.querySelector(".cal-month-name")
+let calDay = document.querySelector(".cal-day");
 
 let clockHr = document.getElementById("hours");
 let clockMin = document.getElementById("minutes");
-let clockSec = document.getElementById("seconds");
+let clockSec = document.querySelector(".cal-time-sec");
+let timePeriod = document.getElementById("time-period");
 
 let city = document.querySelector(".city");
 let cityBG = document.querySelector(".cityBG");
 let clouds = document.querySelector(".clouds-container");
 
 let date = new Date();
-let day, month, year, hours, minutes, seconds, currentClockTime;
+let day, month, hours, minutes, seconds, currentClockTime;
+const months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let timeUnit = "standard";
 
-let weatherUpdateMin = 15;
+let weatherUpdate = 10;         //how often in mins to update weather
 
-window.addEventListener("load", () => { 
+window.addEventListener("load", () => {
     updateWeather();
     updateDate();
 });
@@ -26,31 +29,35 @@ function updateDate() {
     let date = new Date();
 
     day = checkZero(date.getDate());
-    month = checkZero(date.getMonth() + 1);     //+1 bc months start at 0
-    year = checkZero(date.getFullYear());
+    month = date.getMonth() + 1;     //+1 bc months start at 0
 
     hours = date.getHours();
     minutes = date.getMinutes();
     seconds = date.getSeconds();
     currentClockTime = hours + ":" + minutes + ":" + seconds;
 
-    calDay.innerHTML = day;
-    calMonth.innerHTML = month;
-    calYear.innerHTML = year;
+    calDate.innerHTML = day;
+    calMonthNum.innerHTML = month;
+    calMonthName.innerHTML = months[month - 1];
+    calDay.style.backgroundImage = `url(assets/img/week_days/day${date.getDay()}.png)`;
+
+    if (hours >= 12) timePeriod.innerHTML = "PM";
+    else timePeriod.innerHTML = "AM";
 
     checkDayNight();                                          //find background day/night before time conversion
 
-    if (timeUnit == "standard" && hours > 12) hours -= 12;    //standard time
-                                                              //military time by default
-    clockHr.innerHTML = checkZero(hours);
+    if (timeUnit == "standard" && hours > 12) hours -= 12;    //standard time calc; military time by default
+    else if (timeUnit == "military") timePeriod.innerHTML = ""; //hide am/pm in military time
+
+    clockHr.innerHTML = hours;
     clockMin.innerHTML = checkZero(minutes);
     clockSec.innerHTML = checkZero(seconds);
 
     setTimeout(updateDate, 1000)        //update every second
 }
 
-function checkZero(i) {         // add zero in front of numbers < 10
-    if (i < 10) {i = "0" + i};  
+function checkZero(i) {         //add zero in front of numbers < 10
+    if (i < 10) { i = "0" + i };
     return i;
 }
 
@@ -66,47 +73,46 @@ function updateWeather() {
         navigator.geolocation.getCurrentPosition((position) => {
             lon = position.coords.longitude;
             lat = position.coords.latitude;
-        
+
             // API ID
             const api = "6d055e39ee237af35ca066f35474e9df";
-        
+
             // API URL
             const base =
                 `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${api}`;
-        
+
             // Calling the API
             fetch(base)
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                if (tempUnit == "F"){
-                    temperature.textContent = Math.floor(data.main.temp) + "°F";
-                }
-                else {
-                    temperature.textContent = Math.floor((data.main.temp - 32) / 1.8) + "°C";
-                }
-                loc.textContent = data.name + ", " + data.sys.country;
-                let icon1 = data.weather[0].icon;
-                icon.innerHTML = 
-                    `<img src="assets/img/weather_icons/${icon1}.png" style= 'height:100px'/>`;
-                
-                weatherEffects("'" + icon1 + "'");
-            });
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    if (tempUnit == "F") {
+                        temperature.textContent = Math.floor(data.main.temp) + "°F";
+                    }
+                    else {
+                        temperature.textContent = Math.floor((data.main.temp - 32) / 1.8) + "°C";
+                    }
+                    loc.textContent = data.name;
+                    let icon1 = data.weather[0].icon;
+                    icon.innerHTML =
+                        `<img src="assets/img/weather_icons/${icon1}.png" style= 'height:100px' alt="weather icon"/>`;
+                    weatherEffects("'" + icon1 + "'");
+                });
         });
     }
     console.log("Weather updated");
-    setTimeout(updateWeather, weatherUpdateMin*60000)        //update every 15min (min to ms)
+    setTimeout(updateWeather, weatherUpdate * 60000);
 }
 
 let effectsEnabled = true;
 let effects = document.querySelector(".weather-effects");
 function weatherEffects(weather) {
-    if (effectsEnabled){
+    if (effectsEnabled) {
         switch (weather) {
             case '09d':
             case '11d':
-                city.style.filter = 'saturate(40%)';         //darken sky if raining during day
+                city.style.filter = 'saturate(50%)';         //darken sky if raining during day
             case '09n':
             case '10n':
             case '11n':
@@ -124,6 +130,9 @@ function weatherEffects(weather) {
                 break;
             default:
                 effects.style.backgroundImage = "";
+                effects.style.opacity = '100%';
+                city.style.filter = 'saturate(100%)';
+                effects.style.filter = 'blur(0px)';
         }
     }
 }
@@ -132,7 +141,7 @@ function weatherEffects(weather) {
 let menu = document.querySelector(".menu-container");
 let menuButton = document.querySelector(".menu-button-outer");
 
-function toggleMenu(){
+function toggleMenu() {
     if (menu.style.display == "inline") {
         console.log("Hiding menu.")
         menu.style.display = "none";
@@ -161,12 +170,13 @@ function toggleClouds() {
 
 let cloudStatus = "";
 function checkDayNight() {      //city day/night cycle
-    if (hours >= 6 && hours < 18){     //day = 6am->6pm
+    if (hours >= 6 && hours < 18) {     //day = 6am->6pm
         city.style.backgroundImage = "url(assets/img/cityDay.jpg)";
         city.style.animation = "none";
 
         clouds.style.display = "inline";
-        if (cloudButton.style.display = "url(assets/img/phone_icons/cloud-icon-night.png)") cloudButton.style.display = cloudStatus;    //restore previous status if page was loaded throughout the cycle
+        if (cloudButton.style.display = "url(assets/img/phone_icons/cloud-icon-night.png)")
+            cloudButton.style.display = cloudStatus;    //restore previous cloud toggle status 
         cloudButton.disabled = false;
     }
     else {
@@ -183,7 +193,7 @@ function checkDayNight() {      //city day/night cycle
 
 let timeButton = document.querySelector(".time-switch");
 function switchTimeUnit() {
-    if (timeUnit == "military"){
+    if (timeUnit == "military") {
         console.log("Switching to standard time.");
         timeUnit = "standard";
         timeButton.style.backgroundImage = "url(assets/img/phone_icons/time-icon-standard.png)";
@@ -195,9 +205,9 @@ function switchTimeUnit() {
     }
 }
 
-let tempButton = document.querySelector(".temp-switch"); 
+let tempButton = document.querySelector(".temp-switch");
 function switchTempUnit() {
-    if (tempUnit == "C"){
+    if (tempUnit == "C") {
         console.log("Switching to Fahrenheit.");
         tempUnit = "F";
     }
@@ -206,14 +216,14 @@ function switchTempUnit() {
         tempUnit = "C";
     }
 
+    updateWeather();
+
     tempButton.disabled = true;             //cooldown to limit api calls
     tempButton.style.backgroundImage = "url(assets/img/phone_icons/temp-icon-cd.png)";
-    setTimeout(function() {
-        tempButton.disabled  = false;
+    setTimeout(function () {
+        tempButton.disabled = false;
         tempButton.style.backgroundImage = "url(assets/img/phone_icons/temp-icon.png)";
-        updateWeather();                    //temp unit switch feels better after cooldown rather than during
     }, 5000);
-    
 }
 
 const song_list_ordered = [
@@ -239,55 +249,84 @@ const song_list_ordered = [
         path: "assets/audio/Persona_5-Layer_Cake.mp3"
     },
     {
+        name: "Break In To Break Out",
+        source: "Persona 5: The Animation",
+        artist: "Lyn",
+        order: 4,
+        path: "assets/audio/Persona_5_Animation-Break_In_To_Break_Out.mp3"
+    },
+    {
         name: "I Believe",
         source: "Persona 5 Royal",
         artist: "Lyn",
-        order: 4,
+        order: 5,
         path: "assets/audio/Persona_5_Royal-I_Believe.mp3"
     },
     {
         name: "No More What Ifs",
         source: "Persona 5 Royal",
         artist: "Lyn",
-        order: 5,
+        order: 6,
         path: "assets/audio/Persona_5_Royal-No_More_What_Ifs.mp3"
     },
     {
         name: "Heartbeat, Heartbreak",
         source: "Persona 4",
         artist: "Shihoko Hirata",
-        order: 6,
+        order: 7,
         path: "assets/audio/Persona_4-Heartbeat_Heartbreak.mp3"
     },
     {
         name: "Signs of Love",
         source: "Persona 4",
         artist: "Shihoko Hirata",
-        order: 7,
+        order: 8,
         path: "assets/audio/Persona_4-Signs_of_Love.mp3"
     },
     {
         name: "Heaven",
         source: "Persona 4",
         artist: "Shihoko Hirata",
-        order: 8,
+        order: 9,
         path: "assets/audio/Persona_4-Heaven.mp3"
+    },
+    {
+        name: "Never More",
+        source: "Persona 4",
+        artist: "Shihoko Hirata",
+        order: 10,
+        path: "assets/audio/Persona_4-Never_More.mp3"
+    },
+    {
+        name: "When The Moon's Reaching Out Stars",
+        source: "Persona 3",
+        artist: "Yumi Kawamura",
+        order: 11,
+        path: "assets/audio/Persona_3-When_The_Moons_Reaching_Out_Stars.mp3"
+    },
+    {
+        name: "A Way of Life",
+        source: "Persona 3 Portable",
+        artist: "Mayumi Fujita",
+        order: 12,
+        path: "assets/audio/Persona_3_Portable-A_Way_Of_Life.mp3"
     },
     {
         name: "Memories of You",
         source: "Persona 3",
         artist: "Yumi Kawamura",
-        order: 9,
+        order: 13,
         path: "assets/audio/Persona_3-Kimi_no_Kioku_Memories_of_You.mp3"
     },
     {
         name: "A Lone Prayer",
         source: "Persona 1 (PSP)",
         artist: "Yumi Kawamura",
-        order: 10,
+        order: 14,
         path: "assets/audio/Persona_1-A_Lone_Prayer.mp3"
     }
 ];
+
 
 //create object copy for us to modify without changing original order
 let song_list = JSON.parse(JSON.stringify(song_list_ordered));
@@ -295,17 +334,17 @@ let song_list = JSON.parse(JSON.stringify(song_list_ordered));
 let song_source = document.querySelector(".song-source");
 let song_name = document.querySelector(".song-name");
 let song_artist = document.querySelector(".song-artist");
- 
+
 let playpause_btn = document.querySelector(".playpause-song");
 let skip_btn = document.querySelector(".skip-song");
 let prev_btn = document.querySelector(".prev-song");
- 
+
 let seek_slider = document.querySelector(".seek-slider");
 let volume_slider = document.querySelector(".volume-slider");
 let curr_time = document.querySelector(".current-time");
 let song_duration = document.querySelector(".duration");
 let seekPos = 0;
- 
+
 let song_index = 0;
 let isPlaying = false;
 let updateTimer;
@@ -323,7 +362,7 @@ function loadSong(song_index) {
     song_artist.textContent = song_list[song_index].artist;
     song_source.textContent = song_list[song_index].source;
 
-    //Update progression slider every 1000ms
+    //Update progress slider every second
     updateTimer = setInterval(seekUpdate, 1000);
 
     //When current song ends, play next song
@@ -385,7 +424,7 @@ function shuffleSongs() {
         console.log("Song list shuffled.");
         console.log("Song index is now: " + song_index);
     }
-    else { 
+    else {
         shuffleButton.style.color = "black";
         //revert back to original song order
         song_index = song_list[song_index].order - 1;
@@ -432,10 +471,10 @@ function seekUpdate() {
         let durationSec = Math.floor(current_song.duration - durationMin * 60);
 
         //add zero to single digit time values
-        if (currentSec < 10) currentSec = "0" + currentSec; 
-        if (durationSec < 10) durationSec = "0" + durationSec; 
-        if (currentMin < 10) currentMin = "0" + currentMin; 
-        if (durationMin < 10) durationMin = "0" + durationMin; 
+        if (currentSec < 10) currentSec = "0" + currentSec;
+        if (durationSec < 10) durationSec = "0" + durationSec;
+        if (currentMin < 10) currentMin = "0" + currentMin;
+        if (durationMin < 10) durationMin = "0" + durationMin;
 
         //display updated duration
         curr_time.textContent = currentMin + ":" + currentSec;
@@ -448,8 +487,8 @@ function shuffleList(list) {
         j = 0,
         temp;
     while (i--) {
-        j = Math.floor(Math.random() * (i+1));
-        // swap randomly chosen element with current element
+        j = Math.floor(Math.random() * (i + 1));
+        // swap randomly chosen index with current index
         temp = list[i];
         list[i] = list[j];
         list[j] = temp;
@@ -461,11 +500,7 @@ loadSong(song_index);
 setVolume();
 
 //STATUS                TODO                                                            EFFORT REQ
-// [-]      lore accurate calendar display                                              high
-//              array for month num to name
-//              weekdays likely individual images, so array as well
-//              knife image
 // [-]      lore accurate weather display                                               high
 // [-]      separate settings and music player into separate menues                     med
 
-// [~]    toggle individual displays (clouds, clock, calendar, weather, etc.)           med
+// [~]    toggle individual displays (clouds, clock, calendar, weather, etc.)           varied
