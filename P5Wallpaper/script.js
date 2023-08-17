@@ -306,7 +306,7 @@ const song_list_ordered = [
     },
     {
         name: "A Way of Life",
-        source: "Persona 3",
+        source: "Persona 3 Portable",
         artist: "Mayumi Fujita",
         order: 12,
         path: "assets/audio/Persona_3_Portable-A_Way_Of_Life.mp3"

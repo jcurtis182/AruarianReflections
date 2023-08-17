@@ -213,7 +213,7 @@ body {
 
 .cloudMedBar2 {
   animation: orbitReverse 240s linear infinite;
-  width: 2100px;
+  width: 2010px;
 }
 
 .cloudSmallBar {
@@ -303,9 +303,9 @@ body {
   animation: titter 2s steps(2) infinite;
 }
 
-.weather-temp {
+.weather-temp,
+.weather-location {
   font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 5rem;
   color: rgb(255, 255, 255);
   text-shadow:
     -3px -3px 0.5px #000,
@@ -316,22 +316,15 @@ body {
     0 3px 0.5px #000,
     -3px 3px 0.5px #000,
     -3px 0 0.5px #000;
+}
+
+.weather-temp {
+  font-size: 5rem;
   letter-spacing: 2px;
 }
 
 .weather-location {
-  font-family: "P5 Plaintext", Verdana, Geneva, Tahoma, sans-serif;
   font-size: 4rem;
-  color: rgb(255, 255, 255);
-  text-shadow:
-    -3px -3px 0.5px #000,
-    0 -3px 0.5px #000,
-    3px -3px 0.5px #000,
-    3px 0 0.5px #000,
-    3px 3px 0.5px #000,
-    0 3px 0.5px #000,
-    -3px 3px 0.5px #000,
-    -3px 0 0.5px #000;
   letter-spacing: 3px;
 }
 
