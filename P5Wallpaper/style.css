@@ -187,6 +187,7 @@ body {
 
 .cloudBigBar,
 .cloudMedBar,
+.cloudMedBar2,
 .cloudSmallBar {
   position: absolute;
   display: inline-block;
@@ -210,6 +211,11 @@ body {
   width: 1920px;
 }
 
+.cloudMedBar2 {
+  animation: orbitReverse 240s linear infinite;
+  width: 2100px;
+}
+
 .cloudSmallBar {
   animation: orbit 150s linear infinite;
   width: 1920px;
@@ -217,6 +223,7 @@ body {
 
 .cloudBig,
 .cloudMed,
+.cloudMed2,
 .cloudSmall {
   left: 70%;
   opacity: 90%;
@@ -233,6 +240,10 @@ body {
 
 .cloudMed {
   height: 100px;
+}
+
+.cloudMed2 {
+  height: 95px;
 }
 
 .cloudSmall {
@@ -284,8 +295,8 @@ body {
   position: absolute;
   /* background-color: #ffffff; */
   top: 15%;
-  left: 82%;
-  transform: translateX(-50%) translateY(-50%) rotate(-10deg);
+  left: 80%;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .weather-icon {
@@ -337,11 +348,11 @@ body {
 
 @keyframes titter {
   0% {
-    transform: rotate(-20deg);
+    transform: rotate(-15deg);
   }
 
   100% {
-    transform: rotate(-5deg);
+    transform: rotate(0deg);
   }
 }
 
