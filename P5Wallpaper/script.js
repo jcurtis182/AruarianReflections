@@ -501,6 +501,6 @@ setVolume();
 
 //STATUS                TODO                                                            EFFORT REQ
 // [-]      lore accurate weather display                                               high
-// [-]      separate settings and music player into separate menues                     med
+// [-]      separate settings and music player into separate menus                      med
 
 // [~]    toggle individual displays (clouds, clock, calendar, weather, etc.)           varied
