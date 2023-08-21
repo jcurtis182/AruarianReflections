@@ -283,7 +283,7 @@ body {
   position: absolute;
   height: 25%;
   width: 25%;
-  top: 95%;
+  bottom: -20%;
   left: 50%;
   z-index: 5;
   text-align: center;
@@ -296,10 +296,12 @@ body {
   /* background-color: #ffffff; */
   top: 15%;
   left: 80%;
+  margin-left: 5px;
   transform: translateX(-50%) translateY(-50%);
 }
 
 .weather-icon {
+  float: left;
   animation: titter 2s steps(2) infinite;
 }
 
@@ -319,13 +321,16 @@ body {
 }
 
 .weather-temp {
-  font-size: 5rem;
+  font-size: 9vh;
   letter-spacing: 2px;
 }
 
 .weather-location {
-  font-size: 4rem;
+  font-size: 6vh;
   letter-spacing: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .weather-effects {

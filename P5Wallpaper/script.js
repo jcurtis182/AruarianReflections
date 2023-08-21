@@ -118,6 +118,7 @@ function weatherEffects(weather) {
             case '11n':
                 effects.style.backgroundImage = "url(assets/img/rain.gif)";
                 effects.style.opacity = '70%';
+                effects.style.display = "inline";
                 effects.style.filter = 'blur(1px)';
                 console.log("It is raining.");
                 break;
@@ -125,12 +126,14 @@ function weatherEffects(weather) {
             case '13n':
                 effects.style.backgroundImage = "url(assets/img/snow.gif)";
                 effects.style.opacity = '100%';
+                effects.style.display = "inline";
                 effects.style.filter = 'blur(0px)';
                 console.log("It is snowing.");
                 break;
             default:
                 effects.style.backgroundImage = "";
                 effects.style.opacity = '100%';
+                effects.style.display = "none";
                 city.style.filter = 'saturate(100%)';
                 effects.style.filter = 'blur(0px)';
         }
