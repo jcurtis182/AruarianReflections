@@ -46,7 +46,11 @@ function updateDate() {
 
     checkDayNight();                                          //find background day/night before time conversion
 
-    if (timeUnit == "standard" && hours > 12) hours -= 12;    //standard time calc; military time by default
+    if (timeUnit == "standard" && hours > 12) {
+        if (hours == 0) hours = 12; //makes 12am display instead of 0;
+        else hours -= 12;    //standard time calc; military time by default
+    }
+        
     else if (timeUnit == "military") timePeriod.innerHTML = ""; //hide am/pm in military time
 
     clockHr.innerHTML = hours;
@@ -312,7 +316,7 @@ const song_list_ordered = [
         source: "Persona 3 Portable",
         artist: "Mayumi Fujita",
         order: 12,
-        path: "assets/audio/Persona_3_Portable-A_Way_Of_Life.mp3"
+        path: "assets/audio/Persona_3_Portable-A_Way_of_Life.mp3"
     },
     {
         name: "Memories of You",

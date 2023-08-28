@@ -296,12 +296,10 @@ body {
   /* background-color: #ffffff; */
   top: 15%;
   left: 80%;
-  margin-left: 5px;
   transform: translateX(-50%) translateY(-50%);
 }
 
 .weather-icon {
-  float: left;
   animation: titter 2s steps(2) infinite;
 }
 
