@@ -101,7 +101,7 @@ function updateWeather() {
                     let icon1 = data.weather[0].icon;
                     icon.innerHTML =
                         `<img src="assets/img/weather_icons/${icon1}.png" style= 'height:100px' alt="weather icon"/>`;
-                    weatherEffects("'" + icon1 + "'");
+                    weatherEffects(icon1);
                 });
         });
     }
@@ -111,9 +111,10 @@ function updateWeather() {
 
 let effectsEnabled = true;
 let effects = document.querySelector(".weather-effects");
+
 function weatherEffects(weather) {
     if (effectsEnabled) {
-        switch (weather) {
+        switch (weather.toString()) {
             case '09d':
             case '11d':
                 city.style.filter = 'saturate(50%)';         //darken sky if raining during day
@@ -124,7 +125,7 @@ function weatherEffects(weather) {
                 effects.style.opacity = '70%';
                 effects.style.display = "inline";
                 effects.style.filter = 'blur(1px)';
-                console.log("It is raining.");
+                console.log("It is raining: " + weather);
                 break;
             case '13d':
             case '13n':
@@ -132,7 +133,7 @@ function weatherEffects(weather) {
                 effects.style.opacity = '100%';
                 effects.style.display = "inline";
                 effects.style.filter = 'blur(0px)';
-                console.log("It is snowing.");
+                console.log("It is snowing: " + weather);
                 break;
             default:
                 effects.style.backgroundImage = "";
@@ -140,6 +141,7 @@ function weatherEffects(weather) {
                 effects.style.display = "none";
                 city.style.filter = 'saturate(100%)';
                 effects.style.filter = 'blur(0px)';
+                console.log("It is clear weather: " + weather);
         }
     }
 }

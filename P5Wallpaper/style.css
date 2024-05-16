@@ -193,49 +193,33 @@ body {
   display: inline-block;
   padding: 0%;
   z-index: 5;
-  left: 50%;
-  top: 150%;
+  left: 0%;
+  top: 20%;
   height: auto;
-  width: 50%;
+  height: 100px;
+  width: 100%;
   transition: all 1s;
   transform-origin: 0% 35%;
+  background-color: pink;
 }
 
-.cloudBigBar {
-  animation: orbit 200s linear infinite;
-  width: 1824px;
-}
-
-.cloudMedBar {
-  animation: orbitReverse 160s linear infinite;
-  width: 1920px;
-}
-
-.cloudMedBar2 {
-  animation: orbitReverse 240s linear infinite;
-  width: 2010px;
-}
-
-.cloudSmallBar {
-  animation: orbit 150s linear infinite;
-  width: 1920px;
-}
 
 .cloudBig,
 .cloudMed,
 .cloudMed2,
 .cloudSmall {
-  left: 70%;
+  left: 0%;
   opacity: 90%;
   padding: 0%;
   position: absolute;
   top: 100%;
   height: 100px;
-  transform: rotate(90deg);
+  /* transform: rotate(90deg); */
 }
 
 .cloudBig {
   height: 150px;
+  animation: 5s LeftRight linear infinite;
 }
 
 .cloudMed {
@@ -250,39 +234,33 @@ body {
   height: 50px;
 }
 
-@keyframes orbit {
+@keyframes LeftRight {
   0% {
-    transform: rotate(-30deg);
+    transform: translateX(-50%);
   }
-
-  50% {
-    transform: rotate(-90deg);
-  }
-
   100% {
-    transform: rotate(-150deg);
+    transform: translateX(300%);
   }
 }
 
-@keyframes orbitReverse {
+@keyframes RightLeft {
   0% {
-    transform: rotate(-150deg);
+    transform: translateX(1080px);
   }
-
-  50% {
-    transform: rotate(-90deg);
-  }
-
   100% {
-    transform: rotate(-30deg);
+    transform: translateX(0px);
   }
 }
 
 /* Weather Display */
 .weather-container {
   position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  align-items: center;
   height: 25%;
-  width: 25%;
+  width: auto;
   bottom: -20%;
   left: 50%;
   z-index: 5;
@@ -292,11 +270,10 @@ body {
 }
 
 .weather-icon-container {
-  position: absolute;
-  /* background-color: #ffffff; */
   top: 15%;
   left: 80%;
   transform: translateX(-50%) translateY(-50%);
+  padding-left: 5px;
 }
 
 .weather-icon {
@@ -329,6 +306,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  flex-basis: 100%;
 }
 
 .weather-effects {
