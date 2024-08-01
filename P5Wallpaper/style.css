@@ -279,7 +279,7 @@ body {
   pointer-events: none;
 }
 
-.weather-info-container {
+.weather-temp-container {
   display: flex;
   align-items: center;
 }
