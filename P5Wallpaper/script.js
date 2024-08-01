@@ -183,10 +183,10 @@ function checkDayNight() {      //city day/night cycle
         city.style.backgroundImage = "url(assets/img/cityDay.jpg)";
         city.style.animation = "none";
 
-        clouds.style.display = "inline";
-        if (cloudButton.style.display = "url(assets/img/phone_icons/cloud-icon-night.png)")
-            cloudButton.style.display = cloudStatus;    //restore previous cloud toggle status 
-        cloudButton.disabled = false;
+        // clouds.style.display = "inline";
+        // if (cloudButton.style.display = "url(assets/img/phone_icons/cloud-icon-night.png)")
+        //     cloudButton.style.display = cloudStatus;    //restore previous cloud toggle status 
+        // cloudButton.disabled = false;
     }
     else {
         cityBG.style.backgroundImage = "url(assets/img/cityNightOff.jpg)";

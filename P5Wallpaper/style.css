@@ -181,7 +181,7 @@ body {
 
 /* Clouds */
 .clouds-container {
-  display: inline;
+  display: none;
   pointer-events: none;
 }
 
@@ -200,7 +200,8 @@ body {
   width: 100%;
   transition: all 1s;
   transform-origin: 0% 35%;
-  background-color: pink;
+  opacity: 100;
+  background-color: blue;
 }
 
 
@@ -217,26 +218,37 @@ body {
   /* transform: rotate(90deg); */
 }
 
+.cloudMed2,
+.cloudSmall {
+  right: 0%;
+}
+
 .cloudBig {
   height: 150px;
-  animation: 5s LeftRight linear infinite;
+  animation: 45s LeftRight linear infinite;
 }
 
 .cloudMed {
   height: 100px;
+  animation: 30s LeftRight linear infinite;
+
 }
 
 .cloudMed2 {
   height: 95px;
+  animation: 37s RightLeft linear infinite;
+
 }
 
 .cloudSmall {
   height: 50px;
+  animation: 25s RightLeft linear infinite;
+
 }
 
 @keyframes LeftRight {
   0% {
-    transform: translateX(-50%);
+    transform: translateX(-200%);
   }
   100% {
     transform: translateX(300%);
@@ -245,10 +257,10 @@ body {
 
 @keyframes RightLeft {
   0% {
-    transform: translateX(1080px);
+    transform: translateX(100%);
   }
   100% {
-    transform: translateX(0px);
+    transform: translateX(-200%);
   }
 }
 
@@ -257,22 +269,22 @@ body {
   position: absolute;
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: center; */
   align-items: center;
-  height: 25%;
+  justify-content: center;
   width: auto;
-  bottom: -20%;
+  bottom: 0;
   left: 50%;
   z-index: 5;
-  text-align: center;
-  transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%);
   pointer-events: none;
 }
 
+.weather-info-container {
+  display: flex;
+  align-items: center;
+}
+
 .weather-icon-container {
-  top: 15%;
-  left: 80%;
-  transform: translateX(-50%) translateY(-50%);
   padding-left: 5px;
 }
 
@@ -307,7 +319,9 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
   flex-basis: 100%;
+  transform: translateX(25%);
 }
+
 
 .weather-effects {
   position: absolute;
